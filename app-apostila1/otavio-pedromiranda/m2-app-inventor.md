@@ -44,3 +44,25 @@ realizar os projetos de forma tranquila e produtiva.
 
 ### Print das telas dos Blocos
 <img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/2a52ec17-12e2-407e-9396-49f0fab65edc" />
+
+# Projeto 2 – Segundo Aplicativo (pg. 46)
+
+### Descrição
+
+- **Objetivo:** Desenvolver um aplicativo de pintura que utiliza conceitos de desenho,
+  cores e imagem. O app permite ao usuário escolher uma cor (vermelho, verde, azul
+  ou amarelo) e desenhar linhas sobre uma imagem de fundo arrastando o dedo na tela,
+  além de limpar o desenho.
+- **Funcionamento:** O aplicativo possui quatro botões de cores alinhados
+  horizontalmente. Ao selecionar uma cor e arrastar o dedo sobre a área de pintura
+  (que exibe uma imagem do globo terrestre como fundo), linhas são desenhadas na
+  cor escolhida. O botão "Limpar" apaga todos os desenhos feitos.
+- **Modificações realizadas:**
+  - Foram adicionadas **novas opções de cores** além das previstas na apostila.
+  - A **imagem padrão foi substituída** por uma imagem personalizada.
+
+### Print das telas do Design
+<img width="1918" height="893" alt="image" src="https://github.com/user-attachments/assets/33f5293a-50e4-458a-be97-97ef83a58d0c" />
+
+### Print das telas dos Blocos
+<img width="1918" height="893" alt="image" src="https://github.com/user-attachments/assets/5f311fc9-7c6b-4232-b8b7-f36582d11181" />
