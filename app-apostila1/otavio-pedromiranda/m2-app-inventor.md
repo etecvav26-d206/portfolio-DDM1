@@ -185,3 +185,33 @@ realizar os projetos de forma tranquila e produtiva.
 <img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/1418b8a9-7991-4124-9e26-8d68cd71afc0" />
 
 ---
+
+# Projeto 6 – Sexto Aplicativo (pg. 82)
+
+### Descrição
+
+- **Objetivo:** Desenvolver um aplicativo que utiliza o teclado do dispositivo para
+  entrada de dados do usuário. Semelhante ao primeiro aplicativo (Olá Mundo),
+  porém com a diferença de que o nome do usuário é digitado em uma caixa de
+  texto e exibido em uma mensagem de saudação personalizada, utilizando o bloco
+  `juntar` para concatenar textos.
+- **Funcionamento:** O aplicativo possui três componentes principais: uma
+  CaixaDeTexto (onde o usuário digita seu nome), um Botão com o texto
+  "Digite seu Nome e Clique Aqui!" e uma legenda (MostrarLegenda) que exibe
+  o resultado. Ao clicar no botão, o bloco `juntar` concatena a mensagem "Olá"
+  com o conteúdo digitado na CaixaDeTexto, exibindo o resultado na legenda.
+  Por exemplo, se o usuário digitar "Pedro", a legenda exibirá "Olá Pedro".
+- **Modificações realizadas:**
+  - Foi adicionada uma **história/narrativa associada ao nome** digitado pelo
+    usuário, dando mais contexto e personalidade ao projeto. Ao invés de
+    apenas exibir uma saudação simples, o aplicativo apresenta uma pequena
+    história ou descrição vinculada ao nome inserido, tornando a interação
+    mais interessante e criativa.
+
+### Print das telas do Design
+<img width="1917" height="895" alt="image" src="https://github.com/user-attachments/assets/452d041c-9d46-4322-864e-3ac7fa7720a9" />
+
+### Print das telas dos Blocos
+<img width="1919" height="891" alt="image" src="https://github.com/user-attachments/assets/3316ade3-9048-4383-968c-60bc3837bedb" />
+
+---
