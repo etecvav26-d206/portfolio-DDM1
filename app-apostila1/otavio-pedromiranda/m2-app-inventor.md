@@ -88,3 +88,30 @@ realizar os projetos de forma tranquila e produtiva.
 
 ### Print das telas dos Blocos
 <img width="1919" height="894" alt="image" src="https://github.com/user-attachments/assets/96bb432a-c166-4bea-a469-5f48e28e6fbf" />
+
+# Projeto 4 – Quarto Aplicativo (pg. 64)
+
+### Descrição
+
+- **Objetivo:** Desenvolver um aplicativo que utiliza o recurso da câmera do
+  celular para capturar fotografias e exibi-las na tela. O app possui um botão
+  para tirar foto, que aciona a câmera do dispositivo, e após a captura a imagem
+  é exibida diretamente na interface do aplicativo. Também conta com um botão
+  para fechar a aplicação.
+- **Funcionamento:** O aplicativo possui uma área de exibição de imagem (componente
+  Imagem) e dois botões organizados horizontalmente: "Tirar Foto" e "Fechar".
+  Ao clicar em "Tirar Foto", o componente Câmera é acionado e abre a câmera do
+  dispositivo. Após a foto ser tirada, o bloco `quando Câmera1.DepoisDeFotografar`
+  captura a imagem e a exibe no componente Imagem1 utilizando o bloco
+  `ajustar Imagem1.Imagem para obter imagem`. O botão "Fechar" encerra a tela
+  utilizando o bloco `fechar tela`.
+- **Modificações realizadas:**
+  - Foi adicionada uma **funcionalidade de desenho sobre a foto tirada**,
+    permitindo que o usuário faça anotações, rabiscos ou desenhos diretamente
+    sobre a imagem capturada pela câmera, utilizando o componente Pintura
+    em conjunto com a câmera.
+
+### Print das telas do Design
+<img width="1919" height="892" alt="image" src="https://github.com/user-attachments/assets/eccbc4bf-bde4-483c-b681-f66827a316d7" />
+
+### Print das telas dos Blocos<img width="1916" height="896" alt="image" src="https://github.com/user-attachments/assets/6c617995-f5df-40cf-832e-aa3dcea27568" />
