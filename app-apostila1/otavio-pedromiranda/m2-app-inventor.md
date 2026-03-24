@@ -65,7 +65,7 @@ realizar os projetos de forma tranquila e produtiva.
 <img width="1918" height="893" alt="image" src="https://github.com/user-attachments/assets/33f5293a-50e4-458a-be97-97ef83a58d0c" />
 
 ### Print das telas dos Blocos
-<img width="1918" height="893" alt="image" src="https://github.com/user-attachments/assets/5f311fc9-7c6b-4232-b8b7-f36582d11181" />
+<img width="1917" height="895" alt="image" src="https://github.com/user-attachments/assets/40cd2689-6f6c-4e17-9435-fbf8ef71c65d" />
 
 # Projeto 3 – Terceiro Aplicativo (pg. 56)
 
@@ -78,7 +78,7 @@ realizar os projetos de forma tranquila e produtiva.
 - **Funcionamento:** O aplicativo exibe a imagem de um liquidificador ocupando a tela
   inteira como botão. Ao tocar na imagem, o componente Som reproduz um arquivo
   MP3 com o barulho de liquidificador e aciona a vibração do celular por
-  3000 milissegundos.
+  4500 milissegundos.
 - **Modificações realizadas:**
   - Foi adicionada uma **notificação extra** que informa ao usuário quando o
     liquidificador está **ligado**, melhorando o feedback da aplicação.
