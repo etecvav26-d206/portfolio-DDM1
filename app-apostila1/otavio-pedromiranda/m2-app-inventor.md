@@ -114,4 +114,64 @@ realizar os projetos de forma tranquila e produtiva.
 ### Print das telas do Design
 <img width="1919" height="892" alt="image" src="https://github.com/user-attachments/assets/eccbc4bf-bde4-483c-b681-f66827a316d7" />
 
-### Print das telas dos Blocos<img width="1916" height="896" alt="image" src="https://github.com/user-attachments/assets/6c617995-f5df-40cf-832e-aa3dcea27568" />
+### Print das telas dos Blocos
+<img width="1916" height="896" alt="image" src="https://github.com/user-attachments/assets/6c617995-f5df-40cf-832e-aa3dcea27568" />
+
+
+# Projeto 5 – Quinto Aplicativo (pg. 69)
+
+### Descrição
+
+- **Objetivo:** Criar um aplicativo com múltiplas telas de navegação, aprendendo
+  a realizar a transição entre diferentes telas (Screens) dentro de uma mesma
+  aplicação no App Inventor. O app demonstra como utilizar o bloco
+  `abrir outra tela nomeDaTela` para criar um sistema de navegação funcional.
+- **Funcionamento:** O aplicativo possui uma tela inicial (Screen1) com uma legenda
+  "TELA INICIAL" e três botões coloridos organizados horizontalmente — "Tela1"
+  (azul), "Tela2" (verde) e "Tela3" — que direcionam o usuário para as
+  respectivas telas. A Tela1 possui fundo azul e um botão "VoltarInicio" que
+  retorna à Screen1. A Tela2 possui uma imagem de fundo e dois botões:
+  "Voltar Tela Início" (retorna à Screen1) e "Voltar Tela 1" (navega para a
+  Tela1). A Tela3 foi adicionada como melhoria ao projeto original, contendo
+  botões de navegação para as demais telas. A navegação entre todas as telas é
+  feita utilizando o bloco de controle `abrir outra tela` com um bloco de texto
+  contendo o nome da tela de destino.
+- **Modificações realizadas:**
+  - Foi adicionada uma **Tela 3**, expandindo a navegação do aplicativo para
+    além do que era proposto na apostila (que continha apenas Screen1, Tela1
+    e Tela2). A nova tela oferece mais conteúdo e opções de navegação ao
+    usuário, com botões para retornar às demais telas do aplicativo.
+
+---
+
+### Print das telas do Design
+
+**Tela Inicial (Screen1):**
+<img width="1919" height="891" alt="image" src="https://github.com/user-attachments/assets/fe541fa4-1cac-4f49-aed0-64c5abe00354" />
+
+**Tela 1:**
+<img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/6d96fdcf-eccd-43e9-bd8d-8889e73beee5" />
+
+**Tela 2:**
+<img width="1919" height="897" alt="image" src="https://github.com/user-attachments/assets/04302735-0268-494b-b127-62e40f9cddc8" />
+
+**Tela 3 (adicionada como melhoria):**
+<img width="1919" height="893" alt="image" src="https://github.com/user-attachments/assets/db4ad2e9-e876-436f-9ac1-b951225c2f4d" />
+
+---
+
+### Print das telas dos Blocos
+
+**Blocos da Tela Inicial (Screen1):**
+<img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/455d6fd9-1734-42ad-b4ae-21d007fc29f0" />
+
+
+**Blocos da Tela 1:**
+<img width="1919" height="893" alt="image" src="https://github.com/user-attachments/assets/d9c7e9bd-0815-4a9f-a12a-7fa981d05b37" />
+
+**Blocos da Tela 2:**
+<img width="1919" height="897" alt="image" src="https://github.com/user-attachments/assets/fbec4483-1852-424b-82d9-ce5fa1821e96" />
+
+
+**Blocos da Tela 3 (adicionada como melhoria):**
+<img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/1418b8a9-7991-4124-9e26-8d68cd71afc0" />
