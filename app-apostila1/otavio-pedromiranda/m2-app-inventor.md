@@ -45,6 +45,8 @@ realizar os projetos de forma tranquila e produtiva.
 ### Print das telas dos Blocos
 <img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/2a52ec17-12e2-407e-9396-49f0fab65edc" />
 
+---
+
 # Projeto 2 – Segundo Aplicativo (pg. 46)
 
 ### Descrição
@@ -67,6 +69,8 @@ realizar os projetos de forma tranquila e produtiva.
 ### Print das telas dos Blocos
 <img width="1917" height="895" alt="image" src="https://github.com/user-attachments/assets/40cd2689-6f6c-4e17-9435-fbf8ef71c65d" />
 
+---
+
 # Projeto 3 – Terceiro Aplicativo (pg. 56)
 
 ### Descrição
@@ -88,6 +92,8 @@ realizar os projetos de forma tranquila e produtiva.
 
 ### Print das telas dos Blocos
 <img width="1919" height="894" alt="image" src="https://github.com/user-attachments/assets/96bb432a-c166-4bea-a469-5f48e28e6fbf" />
+
+---
 
 # Projeto 4 – Quarto Aplicativo (pg. 64)
 
@@ -116,6 +122,8 @@ realizar os projetos de forma tranquila e produtiva.
 
 ### Print das telas dos Blocos
 <img width="1916" height="896" alt="image" src="https://github.com/user-attachments/assets/6c617995-f5df-40cf-832e-aa3dcea27568" />
+
+---
 
 
 # Projeto 5 – Quinto Aplicativo (pg. 69)
@@ -175,3 +183,5 @@ realizar os projetos de forma tranquila e produtiva.
 
 **Blocos da Tela 3 (adicionada como melhoria):**
 <img width="1919" height="896" alt="image" src="https://github.com/user-attachments/assets/1418b8a9-7991-4124-9e26-8d68cd71afc0" />
+
+---
