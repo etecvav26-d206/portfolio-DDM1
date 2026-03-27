@@ -40,3 +40,12 @@ A primeira tela foi montada com foco em simplicidade e organização visual. For
 - Um botão para navegar até a segunda tela
 - Um componente **Clock**
 - Uma **OrganizaçãoHorizontal** para alinhar os botões lado a lado
+
+### Blocos
+Na lógica da primeira tela, foram utilizadas variáveis globais para armazenar horas, minutos e segundos. Também foram criados procedimentos para:
+
+- formatar números com zero à esquerda
+- atualizar o display do cronômetro
+- controlar a contagem do tempo
+
+O componente **Clock** foi configurado para disparar a cada 1000 milissegundos, incrementando o tempo e atualizando a Label principal. Os botões permitem iniciar, pausar e resetar a contagem. Também foi implementada a navegação para a segunda tela.
