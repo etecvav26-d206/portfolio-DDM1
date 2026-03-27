@@ -27,3 +27,16 @@ Se reunimos para pensar em uma ideia. Inicialmente veio a proposta de criar um j
 
 ### Nova ideia
 A ideia escolhida foi desenvolver o **PomoCrono**, um aplicativo com duas telas: uma de cronômetro e outra de pomodoro. A proposta permite aplicar diversos conceitos estudados na apostila, como uso de botões, organização horizontal, navegação entre telas, variaveis, procedimentos, condicionais, blocos de texto, componente Clock e Notifier.
+
+---
+
+## Screen 1 – Cronômetro
+
+### Design
+A primeira tela foi montada com foco em simplicidade e organização visual. Foram utilizados os seguintes componentes:
+
+- Uma Label principal para exibir o tempo no formato `00:00:00`
+- Três botões: **Iniciar**, **Pausar** e **Resetar**
+- Um botão para navegar até a segunda tela
+- Um componente **Clock**
+- Uma **OrganizaçãoHorizontal** para alinhar os botões lado a lado
