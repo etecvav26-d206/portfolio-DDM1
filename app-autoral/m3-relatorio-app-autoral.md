@@ -49,3 +49,6 @@ Na lógica da primeira tela, foram utilizadas variáveis globais para armazenar 
 - controlar a contagem do tempo
 
 O componente **Clock** foi configurado para disparar a cada 1000 milissegundos, incrementando o tempo e atualizando a Label principal. Os botões permitem iniciar, pausar e resetar a contagem. Também foi implementada a navegação para a segunda tela.
+
+### Resultado
+A Screen 1 ficou funcionando como um cronômetro completo, com contagem progressiva no formato `HH:MM:SS`, botões de controle e navegação para a tela do pomodoro.
