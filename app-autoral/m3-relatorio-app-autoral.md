@@ -81,3 +81,55 @@ A Screen 2 ficou funcionando corretamente como pomodoro, com contagem regressiva
 
 ## Ajustes finais
 Após a implementação das duas telas, foram feitos ajustes visuais e funcionais no aplicativo. Foram revisadas cores, tamanhos de fonte, alinhamento dos componentes e funcionamento dos blocos. Também foram realizados testes para verificar o comportamento dos botões, a navegação entre telas e a alternância automática do pomodoro.
+
+---
+
+## Descrição
+
+### Objetivo do aplicativo
+O **PomoCrono** é um aplicativo que reúne um cronômetro e um timer pomodoro em um único projeto. O objetivo é permitir tanto a medição de tempo de atividades em geral quanto o uso da técnica pomodoro para estudo e produtividade.
+
+### Como o aplicativo funciona
+O aplicativo possui duas telas principais:
+
+- **Screen 1:** cronômetro com contagem progressiva
+- **Screen 2:** pomodoro com contagem regressiva de foco e descanso
+
+Na primeira tela, o usuário pode iniciar, pausar e resetar o cronômetro. Na segunda, pode controlar o pomodoro, visualizar o modo atual e acompanhar os ciclos concluídos. O app permite navegar entre as duas telas a qualquer momento.
+
+### Conceitos utilizados
+Durante o desenvolvimento do projeto, foram utilizados diversos conceitos trabalhados na apostila:
+
+- Construção de interface no modo Design
+- Labels para exibição de informações
+- Botões com propriedades personalizadas
+- OrganizaçãoHorizontal
+- Componente Clock
+- Componente Notifier
+- Variáveis globais
+- Procedimentos
+- Condicionais
+- Blocos de texto e concatenação
+- Navegação entre telas
+
+### Divisão de tarefas
+- **Otávio Giovanelli Biazzi:** blocos e lógica
+- **Pedro Henrique Miranda:** blocos e lógica
+- **Laura Cristina Cruz:** design e organização visual
+- **Pedro Godoi:** design e organização visual
+
+---
+
+## Prints das telas do Design
+
+### Screen 1 – Cronômetro
+
+### Screen 2 – Pomodoro
+
+---
+
+## Prints das telas dos Blocos
+
+### Screen 1 – Blocos
+
+### Screen 2 – Blocos
