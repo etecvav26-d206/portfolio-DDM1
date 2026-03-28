@@ -1,10 +1,10 @@
 # Projeto Autoral - App Inventor
 
 ## Instituição
-Etec Vasco Antonio Venchiarutti
+Etec Vasco Antônio Venchiarutti
 
 ## Curso
-Técnico em Informatica para Internet
+Técnico em Informática para Internet
 
 ## Turma
 2D
@@ -23,10 +23,10 @@ Técnico em Informatica para Internet
 PomoCrono
 
 ### Considerações iniciais
-Se reunimos para pensar em uma ideia. Inicialmente veio a proposta de criar um jogo no estilo Cidade Dorme / Impostor, em que varios celulares se conectariam e cada jogador receberia uma função diferente. Porém, percebemos que seria uma ideia dificil de desenvolver, principalmente pela sincronização entre varios aparelhos ao mesmo tempo. Por isso, decidimos trocar a proposta.
+Se reunimos para pensar em uma ideia. Inicialmente veio a proposta de criar um jogo no estilo Cidade Dorme / Impostor, em que vários celulares se conectariam e cada jogador receberia uma função diferente. Porém, percebemos que seria uma ideia difícil de desenvolver, principalmente pela sincronização entre vários aparelhos ao mesmo tempo. Por isso, decidimos trocar a proposta.
 
 ### Nova ideia
-A ideia escolhida foi desenvolver o **PomoCrono**, um aplicativo com duas telas: uma de cronômetro e outra de pomodoro. A proposta permite aplicar diversos conceitos estudados na apostila, como uso de botões, organização horizontal, navegação entre telas, variaveis, procedimentos, condicionais, blocos de texto, componente Clock e Notifier.
+A ideia escolhida foi desenvolver o **PomoCrono**, um aplicativo com duas telas: uma de cronômetro e outra de pomodoro. A proposta permite aplicar diversos conceitos estudados na apostila, como uso de botões, organização horizontal, navegação entre telas, variáveis, procedimentos, condicionais, blocos de texto, componente Clock e Notifier.
 
 ---
 
@@ -58,7 +58,7 @@ A Screen 1 ficou funcionando como um cronômetro completo, com contagem progress
 ## Screen 2 – Pomodoro
 
 ### Design
-A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistencia no aplicativo. Foram utilizados:
+A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistência no aplicativo. Foram utilizados:
 
 - Uma Label principal para exibir o tempo restante
 - Uma Label para indicar o modo atual
@@ -72,7 +72,7 @@ A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistenc
 ### Blocos
 Na lógica do pomodoro, foram utilizadas variáveis para controlar minutos, segundos, modo atual e ciclos completos. Também foram reaproveitados procedimentos de formatação e atualização do tempo.
 
-O temporizador foi configurado para funcionar em contagem regressiva. Quando o tempo chega a zero, o aplicativo troca automaticamente entre os modos **foco** e **descanso**, atualiza os valores do tempo e usa o **Notifier** para avisar o usuario sobre a mudança.
+O temporizador foi configurado para funcionar em contagem regressiva. Quando o tempo chega a zero, o aplicativo troca automaticamente entre os modos **foco** e **descanso**, atualiza os valores do tempo e usa o **Notifier** para avisar o usuário sobre a mudança.
 
 ### Resultado
 A Screen 2 ficou funcionando corretamente como pomodoro, com contagem regressiva, troca automática de modo, contador de ciclos e navegação de volta para a primeira tela.
