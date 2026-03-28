@@ -73,3 +73,6 @@ A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistenc
 Na lógica do pomodoro, foram utilizadas variáveis para controlar minutos, segundos, modo atual e ciclos completos. Também foram reaproveitados procedimentos de formatação e atualização do tempo.
 
 O temporizador foi configurado para funcionar em contagem regressiva. Quando o tempo chega a zero, o aplicativo troca automaticamente entre os modos **foco** e **descanso**, atualiza os valores do tempo e usa o **Notifier** para avisar o usuario sobre a mudança.
+
+### Resultado
+A Screen 2 ficou funcionando corretamente como pomodoro, com contagem regressiva, troca automática de modo, contador de ciclos e navegação de volta para a primeira tela.
