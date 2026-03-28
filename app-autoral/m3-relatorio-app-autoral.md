@@ -68,3 +68,8 @@ A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistenc
 - Uma **OrganizaçãoHorizontal**
 - Um componente **Clock**
 - Um componente **Notifier**
+
+### Blocos
+Na lógica do pomodoro, foram utilizadas variáveis para controlar minutos, segundos, modo atual e ciclos completos. Também foram reaproveitados procedimentos de formatação e atualização do tempo.
+
+O temporizador foi configurado para funcionar em contagem regressiva. Quando o tempo chega a zero, o aplicativo troca automaticamente entre os modos **foco** e **descanso**, atualiza os valores do tempo e usa o **Notifier** para avisar o usuario sobre a mudança.
