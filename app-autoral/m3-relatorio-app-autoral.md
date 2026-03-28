@@ -76,3 +76,8 @@ O temporizador foi configurado para funcionar em contagem regressiva. Quando o t
 
 ### Resultado
 A Screen 2 ficou funcionando corretamente como pomodoro, com contagem regressiva, troca automática de modo, contador de ciclos e navegação de volta para a primeira tela.
+
+---
+
+## Ajustes finais
+Após a implementação das duas telas, foram feitos ajustes visuais e funcionais no aplicativo. Foram revisadas cores, tamanhos de fonte, alinhamento dos componentes e funcionamento dos blocos. Também foram realizados testes para verificar o comportamento dos botões, a navegação entre telas e a alternância automática do pomodoro.
