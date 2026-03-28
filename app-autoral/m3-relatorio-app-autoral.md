@@ -123,13 +123,17 @@ Durante o desenvolvimento do projeto, foram utilizados diversos conceitos trabal
 ## Prints das telas do Design
 
 ### Screen 1 – Cronômetro
+<img width="1916" height="896" alt="Screen 1 Design" src="https://github.com/user-attachments/assets/f90d9908-08cf-4ceb-815c-3b1e29f4a908" />
 
 ### Screen 2 – Pomodoro
+<img width="1919" height="891" alt="Screen 2 Design" src="https://github.com/user-attachments/assets/86f34bc7-9f82-4e66-8a31-81c35500e08c" />
 
 ---
 
 ## Prints das telas dos Blocos
 
 ### Screen 1 – Blocos
+<img width="1918" height="892" alt="Screen 1 Blocos" src="https://github.com/user-attachments/assets/d73ed351-a865-4dbe-9b6f-ec04cff2bd77" />
 
 ### Screen 2 – Blocos
+<img width="1919" height="888" alt="Screen 2 Blocos" src="https://github.com/user-attachments/assets/66aba9f2-5e32-4fe9-b04c-5fd26dfcddc5" />
