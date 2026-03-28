@@ -52,3 +52,19 @@ O componente **Clock** foi configurado para disparar a cada 1000 milissegundos, 
 
 ### Resultado
 A Screen 1 ficou funcionando como um cronômetro completo, com contagem progressiva no formato `HH:MM:SS`, botões de controle e navegação para a tela do pomodoro.
+
+---
+
+## Screen 2 – Pomodoro
+
+### Design
+A segunda tela seguiu o mesmo padrão visual da primeira, para manter consistencia no aplicativo. Foram utilizados:
+
+- Uma Label principal para exibir o tempo restante
+- Uma Label para indicar o modo atual
+- Uma Label para mostrar a quantidade de ciclos
+- Três botões: **Iniciar**, **Pausar** e **Resetar**
+- Um botão para voltar para a primeira tela
+- Uma **OrganizaçãoHorizontal**
+- Um componente **Clock**
+- Um componente **Notifier**
