@@ -4,7 +4,7 @@
 
 ## Aplicativo 1
 ### Projeto 1 Hello World
-## Responsáveis: Pedro Henrique Dalle Molle Godoi , Laura Laura Cristina Gonçalves da Cruz
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
 ### Design: Pedro Henrique Dalle Molle Godoi
 ### Configuração lógica e Operacional: Laura Laura Cristina Gonçalves da Cruz
 # QR CODE PRA DOWNLOAD:
@@ -17,7 +17,7 @@
 
 ## Aplicativo 2
 ### Projeto 2 Pintar
-## Responsáveis: Pedro Henrique Dalle Molle Godoi , Laura Laura Cristina Gonçalves da Cruz
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
 ### Design: Pedro Henrique Dalle Molle Godoi
 ### Configuração lógica e Operacional: Laura Laura Cristina Gonçalves da Cruz
 # QR CODE PRA DOWNLOAD:
@@ -29,7 +29,7 @@
 
 ## Aplicativo 3
 ## Projeto 3 Liquidificador
-## Responsáveis: Pedro Henrique Dalle Molle Godoi , Laura Laura Cristina Gonçalves da Cruz
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
 ### Design: Pedro Henrique Dalle Molle Godoi
 ### Configuração lógica e Operacional: Laura Laura Cristina Gonçalves da Cruz
 # QR CODE PRA DOWNLOAD:
@@ -41,7 +41,7 @@
 
 ## Aplicativo 4
 ## Projeto 4 Várias Telas
-## Responsáveis: Pedro Henrique Dalle Molle Godoi , Laura Laura Cristina Gonçalves da Cruz
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
 ### Design: Pedro Henrique Dalle Molle Godoi
 ### Configuração lógica e Operacional: Laura Laura Cristina Gonçalves da Cruz
 # QR CODE PRA DOWNLOAD:
