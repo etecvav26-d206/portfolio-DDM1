@@ -36,4 +36,17 @@
 
 
 
+## Aplicativo 5
+## Projeto 5
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
+### Design: Pedro Henrique Dalle Molle Godoi
+### Configuração lógica e Operacional: Laura  Cristina Gonçalves da Cruz
+
+
+## Aplicativo 6
+## Projeto 6
+## Responsáveis: Pedro Henrique Dalle Molle Godoi ,  Laura Cristina Gonçalves da Cruz
+### Design: Pedro Henrique Dalle Molle Godoi
+### Configuração lógica e Operacional: Laura  Cristina Gonçalves da Cruz
+
 
