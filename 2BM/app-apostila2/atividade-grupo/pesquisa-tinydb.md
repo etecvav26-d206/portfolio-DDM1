@@ -162,3 +162,19 @@ Em uma agenda simples, cada contato pode ser salvo in uma lista ou em Tags separ
 ### Cadastro de clientes
 
 Um pequeno cadastro de clientes pode usar o TinyDB para guardar nome, telefone, e-mail e observações. É uma solução adequada para demonstrações, protótipos e aplicativos de uso individual.
+
+### Lista de compras
+
+O TinyDB pode salvar os produtos adicionados pelo usuário, mantendo a lista disponível mesmo depois que o app é fechado.
+
+### Aplicativo de anotações
+
+Um app de anotações pode guardar textos digitados pelo usuário em Tags diferentes, como `nota_1`, `nota_2` ou uma lista chamada `minhas_notas`.
+
+### Controle financeiro
+
+Em um controle financeiro simples, o TinyDB pode armazenar receitas, despesas e saldo. Porém, se o app precisar sincronizar dados entre celulares ou fazer backup online, outra solução será mais adequada.
+
+### Jogos com armazenamento de pontuação
+
+Jogos simples podem usar o TinyDB para salvar recordes, fases liberadas e configurações do jogador. Esse é um uso comum, pois a informação precisa continuar salva no aparelho depois que o jogo fecha.
