@@ -48,3 +48,41 @@ O funcionamento do TinyDB é baseado em pares de **Tag** e **Value**:
 - se o aplicativo for removido ou os dados forem apagados, as informações podem ser perdidas;
 - não substitui um banco de dados completo;
 - exige cuidado na organização das Tags para evitar confusão.
+
+## 3. Funcionamento do TinyDB
+
+O TinyDB trabalha como um pequeno banco de dados local dentro do aplicativo. Para salvar uma informação, o programador escolhe uma Tag e associa a ela um valor. Depois, para recuperar essa informação, usa a mesma Tag. Se o valor de uma Tag for gravado novamente, o valor antigo é substituído pelo novo.
+
+```mermaid
+flowchart TD
+    A["Usuario informa dados no app"] --> B["App usa uma Tag"]
+    B --> C["TinyDB salva o Value no dispositivo"]
+    C --> D["App fecha ou reinicia"]
+    D --> E["App consulta a mesma Tag"]
+    E --> F["TinyDB devolve o Value salvo"]
+```
+
+### Tags ou chaves
+
+As Tags funcionam como nomes de identificação. Por exemplo, em um aplicativo de tarefas, a Tag `lista_tarefas` pode guardar todas as tarefas cadastradas pelo usuário.
+
+Exemplo:
+
+```text
+Tag: lista_tarefas
+Value: ["Estudar TinyDB", "Fazer atividade", "Enviar no Teams"]
+```
+
+### Valores
+
+O Value é o conteúdo salvo na Tag. Ele pode ser um texto, número, lista ou outro tipo de dado simples. Por exemplo:
+
+```text
+Tag: nome_usuario
+Value: "Otavio"
+```
+
+```text
+Tag: pontuacao
+Value: 150
+```
