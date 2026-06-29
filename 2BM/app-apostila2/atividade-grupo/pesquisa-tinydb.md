@@ -144,3 +144,21 @@ Os principais blocos usados com o TinyDB são:
 | `GetTags` | Retorna uma lista com as Tags existentes. | Quando o app precisa listar os registros salvos. |
 
 Esses blocos permitem criar sistemas simples de cadastro e consulta sem precisar de servidor. A documentação oficial do MIT App Inventor apresenta o TinyDB como parte dos componentes de armazenamento, junto com outras opções como File, CloudDB e TinyWebDB (MIT APP INVENTOR, 2024a).
+
+## 5. Aplicações práticas
+
+O TinyDB é adequado para aplicativos que precisam guardar dados simples no próprio celular. Ele funciona bem quando o objetivo é manter informações locais, sem exigir login, servidor ou conexão com a Internet.
+
+Em uma atividade prática do IFSC sobre App Inventor, o TinyDB é apresentado como um componente capaz de armazenar dados de forma persistente no telefone, o que reforça seu uso em aplicações locais e individuais (IFSC, 2012b).
+
+### Lista de tarefas
+
+Em uma lista de tarefas, o TinyDB pode salvar uma lista com os itens cadastrados pelo usuário. Quando o app for aberto novamente, a lista pode ser carregada e exibida na tela.
+
+### Agenda de contatos
+
+Em uma agenda simples, cada contato pode ser salvo in uma lista ou em Tags separadas. Para projetos escolares e protótipos, isso permite criar um cadastro funcional sem usar banco externo.
+
+### Cadastro de clientes
+
+Um pequeno cadastro de clientes pode usar o TinyDB para guardar nome, telefone, e-mail e observações. É uma solução adequada para demonstrações, protótipos e aplicativos de uso individual.
