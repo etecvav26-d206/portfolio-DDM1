@@ -130,3 +130,17 @@ Se antes a Tag `pontuacao` guardava `150`, depois da atualização ela passará 
 ### Remoção de dados
 
 Para remover uma informação específica, usa-se **ClearTag**. Para apagar todos os dados salvos pelo TinyDB naquele aplicativo, usa-se **ClearAll** (MIT APP INVENTOR, 2024a).
+
+## 4. Componentes relacionados
+
+Os principais blocos usados com o TinyDB são:
+
+| Bloco | Função | Quando usar |
+|---|---|---|
+| `StoreValue` | Salva um valor em uma Tag. | Quando o aplicativo precisa guardar uma informação. |
+| `GetValue` | Recupera o valor salvo em uma Tag. | Quando o app precisa mostrar ou reutilizar dados armazenados. |
+| `ClearTag` | Apaga apenas uma Tag específica. | Quando o usuário remove uma informação, como uma tarefa ou contato. |
+| `ClearAll` | Apaga todos os dados salvos pelo TinyDB no app. | Quando o aplicativo precisa limpar todos os registros ou restaurar dados. |
+| `GetTags` | Retorna uma lista com as Tags existentes. | Quando o app precisa listar os registros salvos. |
+
+Esses blocos permitem criar sistemas simples de cadastro e consulta sem precisar de servidor. A documentação oficial do MIT App Inventor apresenta o TinyDB como parte dos componentes de armazenamento, junto com outras opções como File, CloudDB e TinyWebDB (MIT APP INVENTOR, 2024a).
