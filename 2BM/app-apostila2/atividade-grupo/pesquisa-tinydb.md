@@ -86,3 +86,47 @@ Value: "Otavio"
 Tag: pontuacao
 Value: 150
 ```
+
+### Gravação de informações
+
+Para gravar informações, usa-se o bloco **StoreValue**. O programador informa a Tag e o valor que será armazenado.
+
+Exemplo:
+
+```text
+TinyDB.StoreValue
+tag = "nome_usuario"
+valueToStore = CampoNome.Text
+```
+
+Nesse caso, o conteúdo digitado pelo usuário no campo de texto é salvo no dispositivo.
+
+### Leitura de informações
+
+Para ler dados salvos, usa-se o bloco **GetValue**. O aplicativo procura a Tag informada e retorna o valor salvo. Caso não exista nenhum valor para aquela Tag, pode ser usado um valor padrão.
+
+Exemplo:
+
+```text
+nome = TinyDB.GetValue
+tag = "nome_usuario"
+valueIfTagNotThere = "Sem nome cadastrado"
+```
+
+### Atualização de dados
+
+Para atualizar um dado, basta usar novamente **StoreValue** com a mesma Tag. O novo valor substitui o valor anterior.
+
+Exemplo:
+
+```text
+TinyDB.StoreValue
+tag = "pontuacao"
+valueToStore = 200
+```
+
+Se antes a Tag `pontuacao` guardava `150`, depois da atualização ela passará a guardar `200`.
+
+### Remoção de dados
+
+Para remover uma informação específica, usa-se **ClearTag**. Para apagar todos os dados salvos pelo TinyDB naquele aplicativo, usa-se **ClearAll** (MIT APP INVENTOR, 2024a).
