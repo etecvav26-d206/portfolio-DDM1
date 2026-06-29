@@ -55,7 +55,7 @@ O TinyDB trabalha como um pequeno banco de dados local dentro do aplicativo. Par
 
 ```mermaid
 flowchart TD
-    A["Usuario informa dados no app"] --> B["App usa uma Tag"]
+    A["Usuario informa dados no app"]   -->   B["App usa uma Tag"]
     B --> C["TinyDB salva o Value no dispositivo"]
     C --> D["App fecha ou reinicia"]
     D --> E["App consulta a mesma Tag"]
