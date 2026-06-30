@@ -178,3 +178,22 @@ Em um controle financeiro simples, o TinyDB pode armazenar receitas, despesas e 
 ### Jogos com armazenamento de pontuações
 
 Jogos simples podem usar o TinyDB para salvar recordes, fases liberadas e configurações do jogador. Esse é um uso comum, pois a informação precisa continuar salva no aparelho depois que o jogo fecha.
+
+## 6. TinyDB x TinyWebDB
+
+O TinyDB e o TinyWebDB têm a função de armazenar dados, mas são usados em situações diferentes. A diferença principal está no local onde os dados ficam salvos.
+
+| Característica | TinyDB | TinyWebDB |
+|---|---|---|
+| Local dos dados | No próprio dispositivo. | Em um serviço web/servidor. |
+| Precisa de Internet? | Não, para salvar e ler localmente. | Sim, pois depende de comunicação com servidor. |
+| Compartilhamento entre usuários | Não é a finalidade principal. | Pode ser usado para dados acessados por mais de um dispositivo. |
+| Complexidade | Mais simples. | Mais complexo, pois envolve serviço web. |
+| Indicação | Apps individuais, protótipos e dados locais. | Apps que precisam trocar ou consultar dados online. |
+| Risco principal | Perda de dados se o app for apagado ou dados forem limpos. | Dependência de conexão e disponibilidade do servidor. |
+
+O TinyWebDB é um componente que permite armazenar e recuperar dados usando um serviço conectado à web. Por isso, ele é mais indicado quando os dados precisam estar disponíveis fora do aparelho ou quando vários usuários precisam acessar informações parecidas (MIT APP INVENTOR, 2024b).
+
+Já o TinyDB é melhor quando o objetivo é salvar dados simples, rápidos e locais, como preferências, listas e pontuações. Para um app de lista de compras pessoal, por exemplo, o TinyDB é suficiente. Para um app em que vários usuários compartilham uma lista, uma solução web passa a fazer mais sentido.
+
+Essa diferença também aparece em material do IFSC, que descreve o TinyDB como armazenamento persistente no telefone e o TinyWebDB como armazenamento persistente em uma base de dados acessada via web, permitindo comunicação entre aplicações de diferentes celulares (IFSC, 2012b).
