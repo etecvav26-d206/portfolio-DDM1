@@ -242,3 +242,25 @@ TinyDB.GetValue
 tag = "lista_tarefas"
 valueIfTagNotThere = create empty list
 ```
+
+## 8. Conclusão
+
+O TinyDB é importante no desenvolvimento de aplicativos porque permite salvar informações de forma simples e local. Com ele, um app criado no MIT App Inventor pode lembrar dados do usuário mesmo depois de ser fechado, como tarefas, contatos, anotações, pontuações e preferências.
+
+Ele pode ser usado em aplicativos individuais, protótipos, projetos escolares, jogos simples, listas e cadastros pequenos. Não é a melhor escolha para sistemas grandes ou que precisem compartilhar dados entre vários celulares, mas é uma ótima solução para aprender os conceitos básicos de armazenamento.
+
+Durante a pesquisa, o grupo compreendeu que o TinyDB funciona por meio de Tags e Values, que os dados ficam armazenados no dispositivo e que os blocos **StoreValue**, **GetValue**, **ClearTag** e **ClearAll** são essenciais para gravar, recuperar, atualizar e apagar informações. Também foi possível entender a diferença entre armazenamento local e armazenamento online, comparando o TinyDB com o TinyWebDB.
+
+## Referências
+
+IFSC - INSTITUTO FEDERAL DE SANTA CATARINA. **AppInventor Basic Components**. São José: IFSC, 2012a. Disponível em: <https://wiki.sj.ifsc.edu.br/index.php/AppInventor_Basic_Components>. Acesso em: 30 jun. 2026.
+
+IFSC - INSTITUTO FEDERAL DE SANTA CATARINA. **Laboratório de App Inventor 4**. São José: IFSC, 2012b. Disponível em: <https://wiki.sj.ifsc.edu.br/index.php/Laborat%C3%B3rio_de_App_Inventor_4>. Acesso em: 30 jun. 2026.
+
+MIT APP INVENTOR. **About Us**. Cambridge: Massachusetts Institute of Technology, 2025. Disponível em: <https://appinventor.mit.edu/about-us>. Acesso em: 30 jun. 2026.
+
+MIT APP INVENTOR. **Storage: TinyDB**. Cambridge: Massachusetts Institute of Technology, 2024a. Disponível em: <https://ai2.appinventor.mit.edu/reference/components/storage.html#TinyDB>. Acesso em: 30 jun. 2026.
+
+MIT APP INVENTOR. **Storage: TinyWebDB**. Cambridge: Massachusetts Institute of Technology, 2024b. Disponível em: <https://ai2.appinventor.mit.edu/reference/components/storage.html#TinyWebDB>. Acesso em: 30 jun. 2026.
+
+THOMAS, Rodrigo; CAMBRAIA, Adão Caron. **Ensino de programação e desenvolvimento do Pensamento Computacional por meio da construção de aplicativos no App Inventor**. In: WORKSHOP DE INFORMÁTICA NA ESCOLA (WIE), 29., 2023, Passo Fundo/RS. Anais [...]. Porto Alegre: Sociedade Brasileira de Computação, 2023. Disponível em: <https://sol.sbc.org.br/index.php/wie/article/view/26359>. Acesso em: 30 jun. 2026.
