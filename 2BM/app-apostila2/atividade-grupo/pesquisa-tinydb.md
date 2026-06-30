@@ -264,3 +264,4 @@ MIT APP INVENTOR. **Storage: TinyDB**. Cambridge: Massachusetts Institute of Tec
 MIT APP INVENTOR. **Storage: TinyWebDB**. Cambridge: Massachusetts Institute of Technology, 2024b. Disponível em: <https://ai2.appinventor.mit.edu/reference/components/storage.html#TinyWebDB>. Acesso em: 30 jun. 2026.
 
 THOMAS, Rodrigo; CAMBRAIA, Adão Caron. **Ensino de programação e desenvolvimento do Pensamento Computacional por meio da construção de aplicativos no App Inventor**. In: WORKSHOP DE INFORMÁTICA NA ESCOLA (WIE), 29., 2023, Passo Fundo/RS. Anais [...]. Porto Alegre: Sociedade Brasileira de Computação, 2023. Disponível em: <https://sol.sbc.org.br/index.php/wie/article/view/26359>. Acesso em: 30 jun. 2026.
+
