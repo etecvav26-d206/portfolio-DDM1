@@ -197,3 +197,48 @@ O TinyWebDB é um componente que permite armazenar e recuperar dados usando um s
 Já o TinyDB é melhor quando o objetivo é salvar dados simples, rápidos e locais, como preferências, listas e pontuações. Para um app de lista de compras pessoal, por exemplo, o TinyDB é suficiente. Para um app em que vários usuários compartilham uma lista, uma solução web passa a fazer mais sentido.
 
 Essa diferença também aparece em material do IFSC, que descreve o TinyDB como armazenamento persistente no telefone e o TinyWebDB como armazenamento persistente em uma base de dados acessada via web, permitindo comunicação entre aplicações de diferentes celulares (IFSC, 2012b).
+
+## 7. Boas práticas
+
+Ao trabalhar com armazenamento de dados no App Inventor, é importante organizar bem as informações para evitar erros e perda de dados.
+
+### Escolha de nomes para as Tags
+
+As Tags devem ter nomes claros e consistentes. Em vez de usar nomes genéricos como `x` ou `dados`, é melhor usar nomes como:
+
+```text
+lista_tarefas
+nome_usuario
+saldo_atual
+recorde_jogo
+```
+
+Isso torna o projeto mais fácil de entender e manter.
+
+### Organização dos dados
+
+Quando houver vários registros, é melhor guardar listas organizadas do que criar Tags sem padrão. Por exemplo, em uma lista de compras, uma única Tag chamada `lista_compras` pode guardar todos os itens.
+
+### Atualização das informações
+
+Sempre que um valor for alterado, o aplicativo deve salvar novamente a informação atualizada. Um erro comum é mudar o conteúdo na tela, mas esquecer de atualizar o TinyDB.
+
+### Exclusão de dados desnecessários
+
+Dados que não serão mais usados devem ser apagados com **ClearTag**. Isso evita acúmulo de informações antigas.
+
+### Cuidados para evitar perda de informações
+
+Como o TinyDB salva dados localmente, o usuário pode perder as informações se desinstalar o app ou limpar os dados do aplicativo. Em apps mais importantes, é recomendado pensar em exportação, backup ou armazenamento online.
+
+### Uso de valores padrão
+
+Ao usar **GetValue**, é importante definir um valor padrão em `valueIfTagNotThere`. Assim, o app não quebra quando uma Tag ainda não existe.
+
+Exemplo:
+
+```text
+TinyDB.GetValue
+tag = "lista_tarefas"
+valueIfTagNotThere = create empty list
+```
