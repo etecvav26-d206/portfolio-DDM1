@@ -175,6 +175,6 @@ Um app de anotações pode guardar textos digitados pelo usuário em Tags difere
 
 Em um controle financeiro simples, o TinyDB pode armazenar receitas, despesas e saldo. Porém, se o app precisar sincronizar dados entre celulares ou fazer backup online, outra solução será mais adequada.
 
-### Jogos com armazenamento de pontuação
+### Jogos com armazenamento de pontuações
 
 Jogos simples podem usar o TinyDB para salvar recordes, fases liberadas e configurações do jogador. Esse é um uso comum, pois a informação precisa continuar salva no aparelho depois que o jogo fecha.
