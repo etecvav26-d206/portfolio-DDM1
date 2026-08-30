@@ -1,0 +1,13 @@
+### Questão 1 — Antes de desenvolver
+
+Antes de começar a fazer o aplicativo, o grupo deveria primeiro planejar algumas coisas. Por exemplo, definir qual será o objetivo do aplicativo, quem vai utilizá-lo, quais funcionalidades ele terá e como serão organizadas as telas.
+
+Também seria importante decidir quais informações o aplicativo vai guardar, como datas de provas, trabalhos e atividades. Isso ajuda a deixar o desenvolvimento mais organizado e evita ter que mudar muitas coisas depois que o aplicativo já estiver sendo feito.
+
+### Questão 2 — Funciona, então está pronto?
+
+Não concordamos, porque o aplicativo funcionar uma vez não significa que ele está totalmente pronto. É importante fazer vários testes para verificar se tudo funciona corretamente.
+
+Por exemplo, testar o que acontece se o usuário deixar algum campo vazio, colocar uma informação errada ou usar o aplicativo de uma forma diferente da esperada. Também é importante testar se a interface está fácil de entender e se o aplicativo não apresenta erros ou travamentos.
+
+Então, antes de considerar o aplicativo pronto, é necessário testar, encontrar possíveis problemas e fazer as correções necessárias.
