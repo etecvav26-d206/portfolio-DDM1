@@ -81,3 +81,34 @@ O projeto também permite reiniciar a bola e zerar a pontuação tocando na regi
 ![Interface do jogo de bilhar](imagens/bilhar-interface.png)
 
 ![Blocos do jogo de bilhar](imagens/bilhar-blocos.png)
+
+---
+
+# Projeto 3 – MagicBall
+
+## Objetivo e funcionamento
+
+No `magicball.aia`, o jogador inclina o celular para conduzir a bola até um buraco que muda de posição e se movimenta pelo Canvas. O objetivo é acertar todas as 15 bolas antes que o tempo termine.
+
+O acelerômetro controla a posição da bola usando os valores dos eixos X e Y. Quando a bola colide com o buraco, o jogo toca um efeito sonoro, reduz o contador de bolas restantes e move o alvo para outra posição. Um temporizador controla os 60 segundos da partida e encerra o jogo quando o tempo chega a zero.
+
+O seletor de dificuldade modifica o tempo disponível, a velocidade do buraco e o intervalo de movimentação. O modo fácil oferece mais tempo e um alvo mais lento, enquanto o difícil aumenta a velocidade e reduz o tempo da partida.
+
+## Recursos adicionados
+
+- dificuldades fácil, normal e difícil;
+- contador de tempo e de bolas restantes;
+- botões para iniciar, pausar e reiniciar;
+- movimentação pelo acelerômetro;
+- alvo com posição, direção e velocidade variáveis;
+- mensagens de vitória e fim de jogo;
+- efeitos sonoros;
+- recorde salvo localmente com TinyDB.
+
+O recorde é recuperado quando a tela inicia e atualizado ao final da partida. Assim, o jogador consegue comparar o resultado atual com o melhor desempenho salvo no aparelho.
+
+## Prints do projeto
+
+![Interface do MagicBall](imagens/magicball-interface.png)
+
+![Blocos do MagicBall](imagens/magicball-blocos.png)
