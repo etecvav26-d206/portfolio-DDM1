@@ -112,3 +112,63 @@ O recorde é recuperado quando a tela inicia e atualizado ao final da partida. A
 ![Interface do MagicBall](imagens/magicball-interface.png)
 
 ![Blocos do MagicBall](imagens/magicball-blocos.png)
+
+---
+
+# Projeto 4 – PongMaster
+
+## Objetivo e funcionamento
+
+O `PongMaster.aia` segue o estilo Brick Breaker. O jogador arrasta a barra horizontal para rebater a bola e destruir os cinco blocos posicionados na parte superior do Canvas.
+
+O jogo controla pontos, vidas e fases. Quando a bola toca em um bloco, ela rebate, o bloco é ocultado, o placar aumenta e um som é reproduzido. Depois que todos os blocos são destruídos, eles reaparecem e o jogador avança para a fase seguinte, com aumento da velocidade da bola e troca do fundo.
+
+Quando a bola cai, o procedimento de perda de vida reduz o contador. Se ainda houver vidas, a bola e a barra voltam às posições iniciais. Quando as vidas acabam, o jogo mostra `GAME OVER` e oferece a opção de iniciar novamente.
+
+## Sistema de power-ups
+
+Durante a partida, uma estrela pode aparecer e cair pelo cenário. Ao ser coletada pela barra, ela escolhe aleatoriamente um dos seguintes benefícios:
+
+- aumento temporário do tamanho da barra;
+- acréscimo de uma vida;
+- redução temporária da velocidade da bola.
+
+Se a estrela chegar ao fim da tela sem ser coletada, o jogo informa que o power-up foi perdido. Os temporizadores controlam tanto a queda quanto a duração dos efeitos.
+
+## Recursos adicionados
+
+- controle da barra por arraste;
+- placar, vidas e fases;
+- cinco blocos com detecção de colisão;
+- fundos diferentes escolhidos entre as fases;
+- botão de pausa e continuação;
+- sons de início, rebatida, bloco destruído e perda de vida;
+- três tipos de power-up;
+- reinício completo após o fim da partida.
+
+## Prints do projeto
+
+![Interface do PongMaster](imagens/pongmaster-interface.png)
+
+![Blocos do PongMaster](imagens/pongmaster-blocos.png)
+
+---
+
+# Comparação dos projetos
+
+| Projeto | Principal interação | Recursos trabalhados |
+| --- | --- | --- |
+| Carrinhos | Inclinação e movimento do celular | Acelerômetro, Sprite, Canvas e cores. |
+| Bilhar | Gesto de lançamento | Impulso, atrito, colisão, som e pontuação. |
+| MagicBall | Inclinação para alcançar o alvo | Acelerômetro, tempo, dificuldade, pausa e TinyDB. |
+| PongMaster | Arraste da barra e colisões | Fases, vidas, sons, blocos e power-ups. |
+
+## Considerações finais
+
+Os quatro projetos mostraram que um jogo mobile depende da integração entre interface, regras e resposta aos comandos do jogador. Também percebemos a importância de separar a lógica em procedimentos, usar nomes claros e testar situações como pausa, reinício, colisões e fim de jogo.
+
+As melhorias não ficaram somente na aparência. Foram acrescentados recursos que mudam a jogabilidade, como níveis de dificuldade, recorde persistente, fases, vidas, power-ups, controle por gesto e diferentes usos do acelerômetro.
+
+---
+
+*Relatório desenvolvido para fins educacionais na disciplina de Desenvolvimento para Dispositivos Móveis.*
