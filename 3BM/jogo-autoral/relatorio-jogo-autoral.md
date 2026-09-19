@@ -61,3 +61,37 @@ Na tela inicial, o botão `INICIAR` começa a sequência de introdução. Durant
 ## Print da interface
 
 ![Interface do jogo Papas do Mal](imagens/papas-interface.png)
+
+---
+
+# Mecânicas do jogo
+
+## Sistema de horário
+
+A noite começa às `12 AM` e termina às `6 AM`. O procedimento `desenhar_horario` mostra o horário no Canvas, enquanto os temporizadores controlam a passagem do tempo. Ao alcançar 6 AM, a partida é encerrada com a sequência de vitória.
+
+## Câmeras
+
+A variável `camera` identifica o ambiente selecionado, e `camera_aberta` informa se o monitor está em uso. Ao tocar nos pontos do mapa, o fundo muda para o cenário correspondente e o procedimento `mostrar_inimigos` exibe somente os personagens presentes naquela câmera.
+
+Esse sistema permite acompanhar Papas, Rato e Vaca antes que eles se aproximem do escritório.
+
+## Movimentação dos inimigos
+
+Os procedimentos `papas_mover`, `rato_mover` e `vaca_mover` controlam o avanço de cada personagem. O `Clock_IA` executa as decisões em intervalos definidos e utiliza valores aleatórios para variar a movimentação.
+
+As posições são mantidas em variáveis globais. Conforme um inimigo avança, ele aparece em lugares diferentes, como palco, salão, corredores, banheiro ou porta.
+
+## Porta e lanterna
+
+Na área da porta, o jogador pode acender a luz para verificar se existe um inimigo próximo. Também pode fechar a porta para impedir a entrada. Os estados são armazenados nas variáveis `lanterna` e `porta_fechada`.
+
+Se um personagem permanecer na porta e ela continuar aberta, o temporizador de jumpscare pode encerrar a partida. Fechar a porta no momento correto faz o inimigo recuar e permite continuar a noite.
+
+## Sons e transições
+
+O projeto utiliza música de menu, narração introdutória, som de vitória e imagens de jumpscare. Os efeitos de transição são controlados com sprites de fade e pelo procedimento `atualizar_fade`, que altera gradualmente a imagem exibida.
+
+## Print dos blocos
+
+![Blocos do jogo Papas do Mal](imagens/papas-blocos.png)
