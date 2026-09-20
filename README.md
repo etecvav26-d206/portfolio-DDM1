@@ -18,3 +18,14 @@ O objetivo é registrar a evolução do grupo no desenvolvimento de aplicativos 
 ## 🚀 Tecnologias Utilizadas
 
 * MIT App Inventor
+
+---
+
+## 📂 Entregas do 3º bimestre
+
+- [Análise do GitHub](3BM/analise-github.md)
+- [Relatório e projeto TinyDB](3BM/tinydb/relatorio-tinydb.md)
+- [Relatório dos jogos de Otávio e Pedro Miranda](3BM/otavio-pedromiranda/jogos/relatorio-jogos.md)
+- [Relatório do jogo autoral Papas do Mal](3BM/jogo-autoral/relatorio-jogo-autoral.md)
+
+Os relatórios apresentam os objetivos, o funcionamento, os componentes utilizados, as melhorias realizadas e imagens das interfaces e dos blocos de cada projeto.
