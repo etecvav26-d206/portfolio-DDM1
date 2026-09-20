@@ -95,3 +95,51 @@ O projeto utiliza música de menu, narração introdutória, som de vitória e i
 ## Print dos blocos
 
 ![Blocos do jogo Papas do Mal](imagens/papas-blocos.png)
+
+---
+
+# Organização da programação
+
+Para evitar repetir grandes conjuntos de blocos, a lógica foi dividida em procedimentos com responsabilidades específicas.
+
+| Procedimento | Responsabilidade |
+| --- | --- |
+| `mostrar_menu` | Preparar a tela inicial do jogo. |
+| `jogo` | Configurar os elementos e estados usados durante a partida. |
+| `esconder_tudo` | Ocultar sprites antes de montar uma nova visualização. |
+| `ocultar_interface` | Retirar controles que não pertencem à tela atual. |
+| `mostrar_inimigos` | Exibir os personagens de acordo com a câmera escolhida. |
+| `papas_mover` | Atualizar a posição de Papas. |
+| `rato_mover` | Atualizar a posição do Rato. |
+| `vaca_mover` | Atualizar a posição da Vaca. |
+| `desenhar_horario` | Apresentar o horário atual no Canvas. |
+| `atualizar_fade` | Controlar as transições visuais. |
+| `fiim_de_jogo` | Exibir a derrota e interromper a partida. |
+| `vitoria` | Mostrar o encerramento da noite às 6 AM. |
+
+## Temporizadores utilizados
+
+| Temporizador | Função |
+| --- | --- |
+| `Clock_Main` | Atualizar os elementos principais da partida. |
+| `Clock_tempo` | Controlar a passagem das horas. |
+| `Clock_IA` | Movimentar os inimigos. |
+| `Clock_jumpscare` | Verificar a permanência de um inimigo na porta. |
+| `Clock_intro` | Organizar a introdução da noite. |
+| `Clock_Transicao` | Executar o efeito de fade. |
+| `Clock_Vitoria` | Controlar a sequência final de vitória. |
+
+# Testes e correções
+
+Durante os testes, verificamos principalmente:
+
+- abertura e fechamento do monitor de câmeras;
+- troca correta do cenário ao selecionar uma câmera;
+- visibilidade dos inimigos em cada ambiente;
+- funcionamento da porta e da lanterna;
+- progressão do horário entre 12 AM e 6 AM;
+- interrupção dos temporizadores no fim da partida;
+- sequência de jumpscare e retorno ao menu;
+- execução da tela e do som de vitória.
+
+As correções concentraram-se no fluxo entre as telas e nos estados que precisavam ser restaurados ao iniciar uma nova partida. Isso evitou que elementos da rodada anterior continuassem visíveis ou ativos.
