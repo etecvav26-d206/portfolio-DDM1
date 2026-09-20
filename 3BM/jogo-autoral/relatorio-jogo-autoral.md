@@ -143,3 +143,37 @@ Durante os testes, verificamos principalmente:
 - execução da tela e do som de vitória.
 
 As correções concentraram-se no fluxo entre as telas e nos estados que precisavam ser restaurados ao iniciar uma nova partida. Isso evitou que elementos da rodada anterior continuassem visíveis ou ativos.
+
+---
+
+# Tecnologias e recursos utilizados
+
+- MIT App Inventor;
+- programação por blocos;
+- Canvas e ImageSprite;
+- eventos de toque;
+- variáveis globais;
+- procedimentos;
+- números aleatórios;
+- temporizadores;
+- reprodução de áudio;
+- detecção de estados e condições;
+- Git e GitHub para versionamento.
+
+# Evolução do projeto
+
+O desenvolvimento foi dividido em cinco versões. Começamos pela estrutura do jogo e pelo fluxo principal, depois ajustamos telas e elementos visuais. Na sequência, organizamos sons, horário, câmeras e movimentação dos personagens. A quarta etapa foi dedicada às correções de fluxo e aos testes. Por fim, revisamos o projeto e preparamos a versão entregue.
+
+Esse processo foi importante porque permitiu testar cada parte antes de considerar o jogo finalizado. Também deixou o histórico do repositório mais claro, mostrando a participação dos integrantes em momentos diferentes.
+
+# Considerações finais
+
+O desenvolvimento do **Papas do Mal** reuniu os principais conhecimentos trabalhados no bimestre. O projeto exigiu planejamento da interface, criação das regras, controle de vários estados ao mesmo tempo e testes das condições de vitória e derrota.
+
+O maior desafio foi coordenar câmeras, inimigos, porta, lanterna, horário e transições sem deixar os elementos entrarem em conflito. A divisão da lógica em procedimentos e temporizadores ajudou a manter o funcionamento organizado.
+
+Como resultado, criamos um jogo autoral completo, com identidade visual própria, progressão de tempo, estratégia de observação e diferentes respostas às ações do jogador.
+
+---
+
+*Relatório desenvolvido para fins educacionais na disciplina de Desenvolvimento para Dispositivos Móveis.*

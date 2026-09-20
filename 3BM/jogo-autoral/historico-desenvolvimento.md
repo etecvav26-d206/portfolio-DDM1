@@ -4,3 +4,4 @@
 - Versão 2: ajuste das telas, dos elementos visuais e do fluxo da interface.
 - Versão 3: implementação de sons, horário, câmeras e movimentação dos inimigos.
 - Versão 4: correção do fluxo das telas, dos estados da porta e das condições de vitória e derrota.
+- Versão 5: revisão final do projeto e preparação do arquivo entregue pelo grupo.
