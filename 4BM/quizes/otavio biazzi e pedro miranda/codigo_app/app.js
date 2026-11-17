@@ -135,3 +135,103 @@ window.QMRestore = (salvo) => {
   boot();
 };
 
+// ============================================================
+// 3. CONVERSA COM A API (api.php)
+// ============================================================
+
+// O App Inventor chama esta função com a resposta do servidor
+window.QMNativeReceive = (id, codigo, texto) => {
+  if (!pendingNative || pendingNative.id !== id) return;
+  const pedido = pendingNative;
+  pendingNative = null;
+  clearTimeout(pedido.timeout);
+
+  if (!codigo) {
+    pedido.reject(new Error('Sem conexão. Confira o endereço e o XAMPP.'));
+    return;
+  }
+  try {
+    const dados = JSON.parse(texto);
+    if (codigo >= 400 || !dados.ok) throw new Error(dados.message || 'O servidor recusou a operação.');
+    pedido.resolve(dados);
+  } catch (erro) {
+    const msg = erro.message.includes('JSON') ? 'A API retornou uma resposta inválida.' : erro.message;
+    pedido.reject(new Error(msg));
+  }
+};
+
+// Envia um pedido pelo App Inventor (um de cada vez, em fila)
+function requestNative(url, metodo, corpo) {
+  const enviar = () => new Promise((resolve, reject) => {
+    const id = ++nativeSerial;
+    const timeout = setTimeout(() => {
+      if (pendingNative && pendingNative.id === id) pendingNative = null;
+      reject(new Error('O servidor demorou. Confira o XAMPP.'));
+    }, 20000);
+    pendingNative = { id, resolve, reject, timeout };
+    nativeSend({ action: 'request', id, url, method: metodo, body: JSON.stringify(corpo || {}) });
+  });
+  const resultado = nativeQueue.then(enviar);
+  nativeQueue = resultado.catch(() => {});
+  return resultado;
+}
+
+// Arruma o endereço digitado em Info (coloca http:// e /api.php se faltar)
+function normalizeApi(valor) {
+  let texto = valor.trim();
+  if (!/^https?:\/\//i.test(texto)) texto = 'http://' + texto;
+
+  let url;
+  try {
+    url = new URL(texto);
+  } catch (erro) {
+    throw new Error('Digite um endereço válido.');
+  }
+  if (url.username || url.password || url.hash || url.search) {
+    throw new Error('Use o endereço da API sem parâmetros.');
+  }
+  if (url.pathname === '/') {
+    url.pathname = '/QuizMedia/api.php';
+  } else if (!url.pathname.endsWith('.php')) {
+    url.pathname = url.pathname.replace(/\/$/, '') + '/api.php';
+  }
+  return url.href;
+}
+
+// Chama a API. Sem "corpo" é GET, com "corpo" é POST.
+// Exemplo: await api('start', { exclude: [] })
+async function api(acao, corpo = null, base = state.config.api) {
+  const url = base + '?action=' + acao;
+
+  // Dentro do App Inventor quem faz o pedido é o próprio app
+  if (dentroDoApp) return requestNative(url, corpo ? 'POST' : 'GET', corpo);
+
+  // No navegador usamos fetch, com limite de 12 segundos
+  const controle = new AbortController();
+  const limite = setTimeout(() => controle.abort(), 12000);
+  try {
+    const resposta = await fetch(url, {
+      method: corpo ? 'POST' : 'GET',
+      headers: corpo ? { 'Content-Type': 'application/json' } : {},
+      body: corpo ? JSON.stringify(corpo) : undefined,
+      signal: controle.signal,
+      cache: 'no-store'
+    });
+
+    let dados;
+    try {
+      dados = await resposta.json();
+    } catch (erro) {
+      throw new Error('A API não retornou JSON. Confira o endereço.');
+    }
+    if (!resposta.ok || !dados.ok) throw new Error(dados.message || 'O servidor recusou a operação.');
+    return dados;
+  } catch (erro) {
+    if (erro.name === 'AbortError') throw new Error('O servidor demorou. Confira o XAMPP.');
+    if (erro instanceof TypeError) throw new Error('Sem conexão com o servidor. Confira o XAMPP.');
+    throw erro;
+  } finally {
+    clearTimeout(limite);
+  }
+}
+
