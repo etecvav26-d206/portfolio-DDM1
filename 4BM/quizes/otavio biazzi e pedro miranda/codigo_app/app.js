@@ -235,3 +235,159 @@ async function api(acao, corpo = null, base = state.config.api) {
   }
 }
 
+// ============================================================
+// 4. FUNÇÕES AUXILIARES DE INTERFACE
+// ============================================================
+
+// Mostra uma mensagem rápida na parte de baixo da tela
+function toast(texto) {
+  const caixa = $('#toast');
+  caixa.textContent = texto;
+  caixa.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => caixa.classList.remove('show'), 4000);
+}
+
+// Quantas questões já têm resposta
+function answerCount(avaliacao) {
+  return avaliacao.questions.filter((q) => q.selected !== null).length;
+}
+
+// Segundos desde que a avaliação começou
+function elapsed(avaliacao) {
+  const segundos = Math.floor((Date.now() - avaliacao.localStarted) / 1000);
+  return Math.max(0, Math.min(31536000, segundos));
+}
+
+// Formata a data do histórico (ex.: 17 de nov., 14:30)
+function fmtDate(valor) {
+  try {
+    return new Date(valor).toLocaleString('pt-BR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+  } catch (erro) {
+    return '';
+  }
+}
+
+// Monta uma fração em HTML (numerador em cima, denominador embaixo)
+function frac(cima, baixo) {
+  return `<span class="frac"><span>${cima}</span><span>${baixo}</span></span>`;
+}
+
+// Desenha o menu de baixo (Estudar / Avaliação / Histórico / Info)
+function renderTabs() {
+  const menu = $('#tabs');
+
+  // durante a prova o menu some
+  const esconder = view === 'quiz' || view === 'review' || view === 'result';
+  menu.classList.toggle('hidden', esconder);
+  document.body.style.paddingBottom = esconder ? '24px' : '';
+
+  // qual botão fica marcado
+  let marcado = '';
+  if (view === 'estudo' || view === 'historico' || view === 'settings') marcado = view;
+
+  const botoes = [
+    ['estudo', 'Estudar'],
+    ['avaliacao', 'Avaliação'],
+    ['historico', 'Histórico'],
+    ['settings', 'Info']
+  ];
+  menu.innerHTML = botoes.map(([chave, nome]) => {
+    const acao = chave === 'avaliacao' ? 'tab-quiz' : chave;
+    const atual = marcado === chave ? 'aria-current="page"' : '';
+    return `<button data-action="${acao}" ${atual}>${nome}</button>`;
+  }).join('');
+}
+
+// Troca de tela
+function setView(proxima, rolar = true) {
+  endStroke();
+  drawing = false;
+  view = proxima;
+  render();
+  if (rolar) window.scrollTo(0, 0);
+}
+
+// Desenha a tela certa de acordo com a variável "view"
+function render() {
+  renderTabs();
+  if (view === 'estudo') renderEstudo();
+  else if (view === 'quiz' || view === 'review') renderQuiz();
+  else if (view === 'result') renderResult();
+  else if (view === 'historico') renderHistorico();
+  else if (view === 'settings') renderSettings();
+}
+
+// ============================================================
+// 5. FALAS E IMAGENS DO BALDI
+//    Cada situação tem uma lista de [imagem, fala]
+// ============================================================
+const FALAS = {
+  // esperando o aluno escolher
+  espera: [
+    ['gifs/baldi.png', 'Escolha uma alternativa!'],
+    ['gifs/baldi-pensa.webp', 'Pense bem antes de responder.'],
+    ['gifs/baldi-tvfala.webp', 'Vamos, estou esperando.'],
+    ['gifs/baldi-sorrindo.webp', 'Não adianta olhar pro teto.'],
+    ['gifs/baldi-gira.webp', 'É só fazer a conta, você consegue.'],
+    ['gifs/baldi-falando.webp', 'Use o quadro para fazer as contas.']
+  ],
+  // aluno marcou uma alternativa
+  marcou: [
+    ['gifs/baldi.png', 'Resposta marcada.'],
+    ['gifs/baldi-pensa.webp', 'Confere a conta antes de seguir.'],
+    ['gifs/baldi-tvfala.webp', 'Você pode mudar se quiser.'],
+    ['gifs/baldi-gira.webp', 'Já fez a conta no quadro?'],
+    ['gifs/baldi-sorrindo.webp', 'Pode ir para a próxima quando quiser.'],
+    ['gifs/baldi-pensa.webp', 'Tem certeza dessa resposta?']
+  ],
+  // na revisão, questão certa
+  certa: [
+    ['gifs/baldi-danca.webp', 'Certo! Muito bem.'],
+    ['gifs/baldi-feliz.webp', 'Isso aí! Mais uma certa.'],
+    ['gifs/baldi-certo.webp', 'Excelente! Continue assim.'],
+    ['gifs/baldi-danca.webp', 'Perfeito! Você estudou.'],
+    ['gifs/baldi-feliz.webp', 'Mandou bem nessa!']
+  ],
+  // na revisão, questão errada
+  errada: [
+    ['gifs/baldi-frown.webp', 'Errado! Leia a resolução.'],
+    ['gifs/baldi-balanca.webp', 'Quase! Veja onde errou.'],
+    ['gifs/baldi-erro3.webp', 'Ops, essa não era a resposta.'],
+    ['gifs/baldi-regua.webp', 'Hmm... hora de estudar mais.'],
+    ['gifs/baldi-brabo.webp', 'Essa não! Veja a resolução.']
+  ],
+  // resultado final: nota 10
+  dez: [
+    ['gifs/baldi-festa.webp', 'Perfeito! Até coloquei chapéu de festa!'],
+    ['gifs/baldi-danca.webp', 'Nota máxima! Nem precisei da régua.'],
+    ['gifs/baldi-feliz.webp', 'Dez! Você é bom nisso.']
+  ],
+  // resultado final: nota de 6 a 9
+  boa: [
+    ['gifs/baldi-ok.webp', 'Parabéns! Você mereceu.'],
+    ['gifs/baldi-feliz.webp', 'Muito bem! Quase perfeito.'],
+    ['gifs/baldi-danca.webp', 'Mandou bem nessa avaliação!']
+  ],
+  // resultado final: nota de 1 a 5
+  media: [
+    ['gifs/baldi-regua.webp', 'Estude mais um pouco, ou eu pego a régua.'],
+    ['gifs/baldi-brabo.webp', 'Dá pra melhorar. Leia o material de novo.'],
+    ['gifs/baldi-balanca.webp', 'Quase lá, mas ainda faltou.'],
+    ['gifs/baldi-frown.webp', 'Foi mal, hein? Estude de novo.']
+  ],
+  // resultado final: nota 0
+  zero: [
+    ['gifs/baldi-frown.webp', 'Você errou tudo! Volte ao material.'],
+    ['gifs/baldi-brabo.webp', 'Zero? Vai ter muita réguada!'],
+    ['gifs/baldi-erro3.webp', 'Nenhum acerto... vamos estudar!']
+  ]
+};
+
+// Escolhe uma fala da lista. O número "n" só serve para variar a escolha.
+function baldiRow(tipo, n) {
+  const lista = FALAS[tipo];
+  const [imagem, fala] = lista[n % lista.length];
+  return `<div class="baldi-row"><img src="${imagem}" alt="Baldi"><p class="bubble">${fala}</p></div>`;
+}
+
