@@ -1,0 +1,148 @@
+/* ==========================================================
+   BASE.CSS - o que vale para o app inteiro:
+   cores, fontes, topo, menu de baixo, botões e aviso rápido
+   ========================================================== */
+
+/* Fonte dos títulos (arquivo LuckiestGuy.ttf na pasta principal) */
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url(../LuckiestGuy.ttf) format("truetype");
+  font-display: swap;
+}
+
+/* Cores e fontes em variáveis: para mudar o visual é só mexer aqui */
+:root {
+  --bg: #fff3b0; /* fundo amarelo */
+  --card: #fff; /* fundo dos cartões */
+  --ink: #222; /* cor do texto */
+  --soft: #666; /* texto mais clarinho */
+  --line: #d8c35a; /* cor das bordas */
+  --accent: #1f9d2a; /* verde principal */
+  --accent-bg: #d8f3cf; /* verde claro */
+  --bad: #d62f2f; /* vermelho (erro) */
+  --bad-bg: #fbdcd8; /* vermelho claro */
+  --blue: #2b3fd6; /* azul */
+  --ruler: #e0a020; /* amarelo-escuro da régua */
+  --sans: "Comic Sans MS","Comic Neue",system-ui,sans-serif;
+  --titulo: "Luckiest Guy","Comic Sans MS",cursive;
+}
+
+/* Regras gerais: sem cantos arredondados e sem o flash azul ao tocar */
+* {
+  box-sizing: border-box;
+  border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding-bottom: 72px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 var(--sans);
+  touch-action: pan-y;
+}
+
+body * {
+  font-family: var(--sans);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+/* Títulos usam a fonte Luckiest Guy */
+h1, h2, .brand-text, .score strong {
+  font-family: var(--titulo);
+  font-weight: 400;
+  letter-spacing: .03em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+/* Botões e campos herdam a fonte da página */
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  touch-action: manipulation;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Área onde as telas aparecem */
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 22px 18px 30px;
+  outline: 0;
+}
+
+/* Esconde qualquer elemento com a classe "hidden" */
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Faixa verde do topo ---------- */
+.topbar {
+  padding: 12px 18px;
+  background: var(--accent);
+  border-bottom: 4px solid var(--ruler);
+  color: #fff;
+}
+
+.brand-text {
+  font-size: 24px;
+}
+
+/* ---------- Menu de baixo (4 botões fixos na tela) ---------- */
+.tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  background: var(--card);
+  border-top: 4px solid var(--blue);
+}
+
+.tabs button {
+  padding: 15px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--soft);
+}
+
+/* botão da tela atual */
+.tabs button[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-bg);
+}
+
