@@ -1,0 +1,182 @@
+/* ==========================================================
+   ESTUDO.CSS - tela inicial com o material de estudo
+   ========================================================== */
+
+/* Título e texto de abertura */
+.kicker {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.hero h1 {
+  margin: 4px 0 8px;
+}
+
+.hero p {
+  color: var(--soft);
+}
+
+.hero::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Imagem do Baldi flutuando à direita do título */
+.baldi-hero {
+  float: right;
+  height: 190px;
+  margin: 0 0 8px 12px;
+}
+
+mark {
+  background: var(--ruler);
+  padding: 0 3px;
+}
+
+/* Balão de fala do Baldi */
+.bubble {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.bubble.full {
+  display: block;
+  width: 100%;
+  margin: 6px 0 0;
+  font-size: 16px;
+}
+
+/* Baldi + balão lado a lado (usado nas questões e no resultado) */
+.baldi-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.baldi-row img {
+  height: 96px;
+  width: auto;
+  flex: none;
+}
+
+.baldi-row .bubble {
+  margin: 0;
+}
+
+/* Cartões brancos com borda (aulas, avisos, chamada final) */
+.status, .note, .lesson, .cta {
+  margin-top: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.status {
+  padding: 9px 12px;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Bolinha de status do servidor (verde = ok, vermelha = fora do ar) */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50% !important;
+  background: #bbb;
+  flex: none;
+}
+
+.dot.on {
+  background: var(--accent);
+}
+
+.dot.off {
+  background: var(--bad);
+}
+
+/* Cada aula (O que é a média, Média aritmética...) */
+.lesson {
+  padding: 16px;
+}
+
+.lesson>header {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.lesson>header span {
+  font-weight: 700;
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.lesson-body p+p {
+  margin-top: 8px;
+}
+
+/* Caixa verde com a fórmula */
+.formula {
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--accent-bg);
+  font-family: ui-monospace,Consolas,monospace;
+  overflow-x: auto;
+}
+
+.formula small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--soft);
+}
+
+/* Fração: numerador em cima, risco no meio, denominador embaixo */
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 6px;
+  line-height: 1.2;
+}
+
+.frac>span:first-child {
+  border-bottom: 2px solid var(--ink);
+  padding: 0 6px 2px;
+}
+
+.frac>span:last-child {
+  padding: 2px 6px 0;
+}
+
+/* Caixa de exemplo (borda verde na esquerda) */
+.example, .explain {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 4px solid var(--accent);
+  background: var(--bg);
+}
+
+.example h3 {
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.steps {
+  margin: 6px 0 0;
+  padding-left: 20px;
+}
+

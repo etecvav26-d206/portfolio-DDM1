@@ -391,3 +391,110 @@ function baldiRow(tipo, n) {
   return `<div class="baldi-row"><img src="${imagem}" alt="Baldi"><p class="bubble">${fala}</p></div>`;
 }
 
+// ============================================================
+// 6. TELA DE ESTUDO (material sobre média)
+// ============================================================
+function renderEstudo() {
+  const emAndamento = state.active;
+
+  main.innerHTML = `
+    <section class="hero">
+      <img class="baldi-hero" src="gifs/baldi.png" alt="Baldi segurando a régua">
+      <h1>Aprenda <mark>média</mark> e depois faça a avaliação.</h1>
+      <p>Leia o material abaixo. Quando se sentir pronto, faça a avaliação: 10 questões sorteadas de um banco de 30, sem repetir.</p>
+    </section>
+    <p class="bubble full">Estude direito, senão vai tomar réguada!</p>
+
+    <article class="lesson">
+      <header><h2>O que é a média</h2></header>
+      <div class="lesson-body">
+        <p>A média é um único número que representa um conjunto de valores. Ela diz qual seria o valor de todos se eles fossem iguais.</p>
+        <p>Exemplo do dia a dia: a média das suas notas, a temperatura média da semana, o gasto médio por dia.</p>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <header><h2>Média aritmética</h2></header>
+      <div class="lesson-body">
+        <p>Todos os valores têm a mesma importância. Some tudo e divida pela quantidade de valores.</p>
+        <div class="formula">M = ${frac('x₁ + x₂ + … + xₙ', 'n')}<small>n = quantidade de valores</small></div>
+        <div class="example">
+          <h3>Exemplo</h3>
+          <p>Média de 6, 8 e 10:</p>
+          <ol class="steps"><li>Soma: 6 + 8 + 10 = 24</li><li>Quantidade: 3</li><li>Média: 24 ÷ 3 = 8</li></ol>
+        </div>
+        <details><summary>Tente: média de 5, 7, 9 e 11</summary><div class="ans">5 + 7 + 9 + 11 = 32 e 32 ÷ 4 = 8.</div></details>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <header><h2>Média ponderada</h2></header>
+      <div class="lesson-body">
+        <p>Aqui cada valor tem um peso. Multiplique cada valor pelo seu peso, some, e divida pela soma dos pesos.</p>
+        <div class="formula">M = ${frac('x₁·p₁ + x₂·p₂ + …', 'p₁ + p₂ + …')}<small>p = peso de cada valor</small></div>
+        <div class="example">
+          <h3>Exemplo</h3>
+          <p>Nota 6 com peso 2 e nota 8 com peso 3:</p>
+          <ol class="steps"><li>6 · 2 = 12 e 8 · 3 = 24</li><li>Soma dos produtos: 36</li><li>Soma dos pesos: 5</li><li>Média: 36 ÷ 5 = 7,2</li></ol>
+        </div>
+        <details><summary>Tente: nota 5 (peso 1) e nota 9 (peso 3)</summary><div class="ans">(5·1 + 9·3) ÷ (1+3) = 32 ÷ 4 = 8.</div></details>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <header><h2>Valor desconhecido</h2></header>
+      <div class="lesson-body">
+        <p>Quando o problema dá a média e esconde um valor, faça o caminho de volta: soma = média × quantidade. Depois subtraia os valores que você já conhece.</p>
+        <div class="example">
+          <h3>Exemplo</h3>
+          <p>Duas notas são 7 e 8. Qual deve ser a terceira para a média ser 8?</p>
+          <ol class="steps"><li>Soma necessária: 8 · 3 = 24</li><li>Já tem: 7 + 8 = 15</li><li>Falta: 24 − 15 = 9</li></ol>
+        </div>
+        <details><summary>Tente: média 6 em 4 provas; notas 5, 6 e 4</summary><div class="ans">Soma necessária 6·4 = 24. Já tem 15. Falta 9.</div></details>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <header><h2>Interpretando a média</h2></header>
+      <div class="lesson-body">
+        <p>A média não é o valor do meio e nem precisa ser um dos valores da lista. Valores muito altos ou baixos puxam a média.</p>
+        <div class="example"><h3>Exemplo</h3><p>2, 2, 2 e 10 têm média (2+2+2+10) ÷ 4 = 4. Três dos quatro valores são menores que a média.</p></div>
+      </div>
+    </article>
+
+    <section class="cheat">
+      <h2>Resumo para a avaliação</h2>
+      <ul>
+        <li>Aritmética: soma ÷ quantidade.</li>
+        <li>Ponderada: soma dos (valor × peso) ÷ soma dos pesos.</li>
+        <li>Valor que falta: média × quantidade − soma que já existe.</li>
+        <li>Confira se a conta faz sentido: a média fica entre o menor e o maior valor.</li>
+      </ul>
+    </section>
+
+    <section class="cta">
+      <h2>${emAndamento ? 'Avaliação em andamento' : 'Pronto para a avaliação?'}</h2>
+      <button class="btn primary block" data-action="${emAndamento ? 'resume' : 'start'}">${emAndamento ? 'Continuar avaliação' : 'Fazer avaliação'}</button>
+    </section>`;
+}
+
+// Pergunta ao servidor quantas questões existem (health)
+async function checkHealth() {
+  const base = state.config.api;
+  try {
+    const resposta = await api('health', null, base);
+    if (base !== state.config.api) return;   // o endereço mudou no meio do caminho
+    online = resposta.questionCount >= 10;
+    questionCount = resposta.questionCount;
+  } catch (erro) {
+    if (base !== state.config.api) return;
+    online = false;
+  }
+  const caixa = $('#home-server');
+  if (caixa) {
+    caixa.innerHTML = online
+      ? `<i class="dot on"></i>Banco conectado · ${questionCount} questões`
+      : '<i class="dot off"></i>Servidor fora do ar · confira o XAMPP';
+  }
+}
+
