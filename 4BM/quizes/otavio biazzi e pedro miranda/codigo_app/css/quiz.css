@@ -1,0 +1,250 @@
+/* ==========================================================
+   QUIZ.CSS - avaliação, quadro de contas, resultado, histórico e info
+   ========================================================== */
+
+/* Topo da questão (botões Sair / Desistir) */
+.qhead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Bolinhas numeradas de 1 a 10 (azul = respondida, verde/vermelha = revisão) */
+.qmap {
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.qmap button {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  background: var(--card);
+}
+
+.qmap .answered {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.qmap .current {
+  border: 2px solid var(--ink);
+  font-weight: 700;
+}
+
+.qmap .correct {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.qmap .wrong {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--soft);
+  margin-bottom: 8px;
+}
+
+/* Cartão com o enunciado da questão */
+.qcard {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.qmeta {
+  font-size: 13px;
+  color: var(--soft);
+  margin-bottom: 6px;
+}
+
+.qcard h1 {
+  font: 700 20px/1.35 var(--sans);
+  letter-spacing: 0;
+}
+
+/* Alternativas A, B, C, D */
+.options {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid var(--line);
+  padding: 10px;
+  min-height: 50px;
+}
+
+.option>span:last-child {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.letter {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50% !important;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.option.selected, .option.correct {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.option.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.selected .letter, .correct .letter {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.wrong .letter {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+
+.explain strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Botões Anterior / Próxima */
+.qnav {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.qnav .btn {
+  flex: 1;
+}
+
+.quit-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.sync {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--soft);
+}
+
+.sync.pending {
+  color: var(--bad);
+}
+
+
+/* Quadro de rascunho para fazer contas */
+.board-box {
+  margin-top: 20px;
+}
+
+.board-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.board-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.board-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.board-tools input[type=range] {
+  width: 60px;
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.board-tools .btn {
+  flex: none;
+  padding: 5px 10px;
+}
+
+/* Área de desenho */
+.canvas-wrap {
+  position: relative;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+  background: #fff;
+  touch-action: pan-y;
+}
+
+.canvas-wrap.editing {
+  touch-action: none;
+  border: 2px solid var(--accent);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 240px;
+  background: #fff;
+}
+
+.canvas-note {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.canvas-status {
+  display: block;
+  padding: 4px 8px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 12px;
+  color: var(--soft);
+}
+
+
