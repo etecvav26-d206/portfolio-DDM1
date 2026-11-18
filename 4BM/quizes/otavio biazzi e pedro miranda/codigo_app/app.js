@@ -1012,3 +1012,112 @@ async function saveSettings() {
   }
 }
 
+// ============================================================
+// 11. EVENTOS (cliques e outros)
+// ============================================================
+
+// Um único "ouvinte" de clique para o app todo.
+// Cada botão tem data-action="nome" e aqui decidimos o que fazer.
+document.addEventListener('click', (e) => {
+  const botao = e.target.closest('[data-action]');
+  if (!botao || botao.disabled) return;
+  if (finishing) { toast('Aguarde a correção.'); return; }
+
+  const acao = botao.dataset.action;
+  const i = Number(botao.dataset.index);   // número do botão (questão, histórico...)
+
+  if (acao === 'estudo') { setView('estudo'); sync(); checkHealth(); }
+  else if (acao === 'tab-quiz') {
+    if (state.active) { current = state.active.index || 0; setView('quiz'); sync(); }
+    else startQuiz();
+  }
+  else if (acao === 'historico') setView('historico');
+  else if (acao === 'settings') setView('settings');
+  else if (acao === 'save-settings') saveSettings();
+  else if (acao === 'start') startQuiz();
+  else if (acao === 'resume') { current = state.active.index || 0; setView('quiz'); sync(); }
+  else if (acao === 'giveup') giveUp();
+  else if (acao === 'answer') chooseAnswer(i);
+  else if (acao === 'jump') navigate(i);
+  else if (acao === 'next') navigate(current + 1);
+  else if (acao === 'previous') navigate(current - 1);
+  else if (acao === 'toggle-board') toggleBoard();
+  else if (acao === 'clear-board') clearBoard();
+  else if (acao === 'finish') finishQuiz();
+  else if (acao === 'result') setView('result');
+  else if (acao === 'history') { review = state.history[i]; current = 0; setView('result'); }
+  else if (acao === 'review-all') { current = 0; setView('review'); }
+  else if (acao === 'review-question') { current = i; setView('review'); }
+  else if (acao === 'new') {
+    if (state.active) { current = state.active.index || 0; setView('quiz'); }
+    else { setView('estudo'); startQuiz(); }
+  }
+});
+
+// Mexeu no controle da grossura do pincel
+document.addEventListener('input', (e) => {
+  if (e.target.id === 'brush') {
+    brushWidth = Number(e.target.value);
+    $('#brush-value').textContent = brushWidth;
+  }
+});
+
+// Saiu do app ou trocou de aba: salva. Voltou: envia o que faltou.
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    endStroke();
+    if (state.active) persist();
+  } else {
+    sync();
+  }
+});
+window.addEventListener('pagehide', () => {
+  endStroke();
+  if (state.active) persist();
+});
+
+// A internet voltou
+window.addEventListener('online', () => {
+  sync();
+  if (view === 'estudo') checkHealth();
+});
+
+// Botão "voltar" do celular (o App Inventor chama esta função)
+window.QMBack = () => {
+  if (finishing) return;
+  if (drawing) { toggleBoard(); return; }
+  if (view === 'review') { setView('result'); }
+  else if (view !== 'estudo') { setView('estudo'); sync(); }
+  else { toast('Seu progresso está salvo.'); }
+};
+
+// ============================================================
+// 12. INÍCIO DO APP
+// ============================================================
+function boot() {
+  if (booted) return;
+  booted = true;
+  view = 'estudo';
+  render();
+  checkHealth();
+  // se ficou algo sem enviar da última vez, envia agora
+  if (state.active && state.active.revision !== state.active.syncedRevision) {
+    syncTimer = setTimeout(sync, 1500);
+  }
+}
+
+// Tenta carregar o que estava salvo no navegador
+try { adopt(localStorage.getItem(CHAVE)); } catch (erro) { /* sem localStorage */ }
+
+if (dentroDoApp) {
+  // pede ao App Inventor os dados salvos; se ele não responder em 3,5 s, inicia assim mesmo
+  nativeSend({ action: 'load' });
+  setTimeout(() => {
+    if (!booted) { restoreDone = true; boot(); }
+  }, 3500);
+} else {
+  restoreDone = true;
+  boot();
+}
+
+})();
