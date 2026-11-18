@@ -858,3 +858,157 @@ function clearBoard() {
   redraw();
 }
 
+// ============================================================
+// 10. FINALIZAR, RESULTADO, HISTÓRICO E INFO
+// ============================================================
+
+// Envia tudo ao servidor, que corrige e devolve a nota
+async function finishQuiz() {
+  if (finishing || !state.active) return;
+  endStroke();
+  const a = state.active;
+  const respondidas = answerCount(a);
+
+  // só finaliza com as 10 respondidas
+  if (respondidas < 10) {
+    navigate(a.questions.findIndex((q) => q.selected === null));
+    toast(`Faltam ${10 - respondidas} questões.`);
+    return;
+  }
+
+  finishing = true;
+  busy = true;
+  clearTimeout(syncTimer);
+  const botao = $('[data-action="finish"]');
+  if (botao) {
+    botao.disabled = true;
+    botao.innerHTML = '<span class="loading"></span>';
+  }
+
+  try {
+    const resultado = await api('finish', saveBody(a), a.api);
+    review = { ...resultado, api: a.api, localStarted: a.localStarted, completedLocal: Date.now() };
+
+    // guarda no histórico (no máximo 8, sem repetir)
+    const outras = state.history.filter((h) => h.token !== review.token);
+    state.history = [review, ...outras].slice(0, 8);
+    state.active = null;
+    persist();
+    current = 0;
+    online = true;
+    setView('result');
+  } catch (erro) {
+    toast(erro.message + ' Suas respostas continuam salvas.');
+    if (view === 'quiz') renderQuiz();
+  } finally {
+    finishing = false;
+    busy = false;
+  }
+}
+
+// Tela de resultado
+function renderResult() {
+  if (!review) { setView('estudo'); return; }
+  const nota = review.score;
+
+  // fala do Baldi conforme a nota
+  let tipo = 'zero';
+  if (nota === 10) tipo = 'dez';
+  else if (nota > 5) tipo = 'boa';
+  else if (nota > 0) tipo = 'media';
+
+  const idPrimeira = review.questions[0] ? review.questions[0].id : 0;
+
+  const lista = review.questions.map((q, i) => `
+    <button class="row ${q.isCorrect ? 'good' : 'bad'}" data-action="review-question" data-index="${i}">
+      <span class="badge">${i + 1}</span>
+      <span><p>${esc(q.prompt)}</p><small>${q.isCorrect ? 'Acertou' : 'Errou'}</small></span>
+    </button>`).join('');
+
+  main.innerHTML = `
+    <div class="qhead"><button class="btn small" data-action="estudo">Voltar ao início</button></div>
+    ${baldiRow(tipo, nota + idPrimeira)}
+    <div class="score"><strong>${nota}</strong><span>/ 10</span></div>
+    <div class="metrics">
+      <div><b>${nota}</b><small>acertos</small></div>
+      <div><b>${nota * 10}%</b><small>aproveitamento</small></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary block" data-action="review-all">Rever respostas e contas</button>
+      <button class="btn block" data-action="new">Nova avaliação</button>
+    </div>
+    <h2 class="section-title">Questões</h2>
+    ${lista}`;
+}
+
+// Tela de histórico
+function renderHistorico() {
+  let conteudo;
+  if (state.history.length) {
+    conteudo = state.history.map((a, i) => `
+      <button class="row" data-action="history" data-index="${i}">
+        <span class="badge">${a.score}</span>
+        <span><p>${a.score} de 10 certas</p><small>${fmtDate(a.completedLocal)}</small></span>
+      </button>`).join('');
+  } else {
+    conteudo = '<div class="empty">Nenhuma avaliação finalizada ainda.</div>';
+  }
+  main.innerHTML = `<h1>Histórico</h1>${conteudo}`;
+}
+
+// Tela de informações (dupla, assunto e endereço da API)
+function renderSettings() {
+  main.innerHTML = `
+    <h1>Info</h1>
+    <table class="table">
+      <tr><th>Dupla</th><td>Otávio Giovanelli Biazzi<br>Pedro Henrique Miranda</td></tr>
+      <tr><th>Assunto</th><td>Média na Matemática</td></tr>
+    </table>
+    <label class="field" for="api-url">Endereço</label>
+    <input class="input" id="api-url" type="url" inputmode="url" autocapitalize="off" spellcheck="false" value="${esc(state.config.api)}">
+    <button class="btn primary block" data-action="save-settings" style="margin-top:12px">Salvar</button>
+    <div id="connection-result" class="result-msg hidden" role="status"></div>`;
+}
+
+// Salva o endereço da API e testa a conexão
+async function saveSettings() {
+  if (busy) return;
+  const campo = $('#api-url');
+  const caixa = $('#connection-result');
+  const botao = $('[data-action="save-settings"]');
+
+  let base;
+  try {
+    base = normalizeApi(campo.value);
+  } catch (erro) {
+    toast(erro.message);
+    return;
+  }
+
+  state.config.api = base;
+  persist();
+  campo.value = base;
+  busy = true;
+  botao.disabled = true;
+  botao.innerHTML = '<span class="loading"></span>';
+  caixa.className = 'result-msg hidden';
+
+  try {
+    const resposta = await api('health', null, base);
+    online = resposta.questionCount >= 10;
+    questionCount = resposta.questionCount;
+    caixa.className = 'result-msg ' + (online ? 'good' : 'bad');
+    caixa.textContent = online ? 'Conectado.' : 'Faltam questões no banco.';
+  } catch (erro) {
+    online = false;
+    caixa.className = 'result-msg bad';
+    caixa.textContent = erro.message;
+  } finally {
+    busy = false;
+    if (botao.isConnected) {
+      botao.disabled = false;
+      botao.textContent = 'Salvar';
+    }
+  }
+}
+
