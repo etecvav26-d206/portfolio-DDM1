@@ -718,3 +718,143 @@ function navigate(i) {
   window.scrollTo(0, 0);
 }
 
+// ============================================================
+// 9. QUADRO DE CONTAS (canvas)
+//    Cada traço é { width, points: [[x, y], ...] } com x e y entre 0 e 1,
+//    assim o desenho se ajusta a qualquer tamanho de tela.
+// ============================================================
+let resizeObserver, canvas, ctx;
+
+// Prepara o quadro depois que a questão foi desenhada na tela
+function initCanvas() {
+  if (resizeObserver) resizeObserver.disconnect();
+  canvas = $('#board');
+  if (!canvas) return;
+  ctx = canvas.getContext('2d');
+
+  // redesenha se o tamanho mudar
+  resizeObserver = new ResizeObserver(() => redraw());
+  resizeObserver.observe(canvas);
+
+  // dedo/mouse encostou: começa um traço
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawing || view !== 'quiz' || finishing || stroke || e.isPrimary === false) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+
+    const q = state.active.questions[current];
+    let usados = 0;
+    for (const t of q.strokes) usados += t.points.length;
+    if (q.strokes.length >= 500 || usados >= 39500) {
+      toast('Quadro cheio. Desfaça traços ou limpe.');
+      return;
+    }
+
+    e.preventDefault();
+    canvas.setPointerCapture(e.pointerId);
+    stroke = { width: brushWidth, points: [point(e)], pointer: e.pointerId, remaining: 40000 - usados };
+    q.strokes.push({ width: stroke.width, points: stroke.points });
+    $('#canvas-note').classList.add('hidden');
+    redraw();
+  });
+
+  // dedo/mouse andou: aumenta o traço
+  canvas.addEventListener('pointermove', (e) => {
+    if (!stroke || stroke.pointer !== e.pointerId) return;
+    e.preventDefault();
+    const pontos = stroke.points;
+    const novo = point(e);
+    const ultimo = pontos[pontos.length - 1];
+    if (pontos.length >= Math.min(2000, stroke.remaining)) return;               // traço grande demais
+    if (Math.hypot(novo[0] - ultimo[0], novo[1] - ultimo[1]) < 0.0012) return;   // quase não mexeu
+    pontos.push(novo);
+    drawSegment(ultimo, novo, stroke.width);
+  });
+
+  // soltou o dedo: termina o traço
+  for (const nome of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    canvas.addEventListener(nome, () => endStroke());
+  }
+  redraw();
+}
+
+// Converte a posição do dedo em [x, y] entre 0 e 1
+function point(e) {
+  const caixa = canvas.getBoundingClientRect();
+  const x = Math.min(1, Math.max(0, (e.clientX - caixa.left) / caixa.width));
+  const y = Math.min(1, Math.max(0, (e.clientY - caixa.top) / caixa.height));
+  return [Number(x.toFixed(5)), Number(y.toFixed(5))];
+}
+
+// Desenha uma linha entre dois pontos
+function drawSegment(a, b, grossura) {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = grossura * w / 350;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(a[0] * w, a[1] * h);
+  ctx.lineTo(b[0] * w, b[1] * h);
+  ctx.stroke();
+}
+
+// Apaga e desenha tudo de novo
+function redraw() {
+  if (!canvas || !ctx) return;
+  const avaliacao = avaliacaoAtual();
+  if (!avaliacao) return;
+
+  // ajusta a resolução para telas nítidas (celular)
+  const escala = Math.min(window.devicePixelRatio || 1, 3);
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  canvas.width = Math.round(w * escala);
+  canvas.height = Math.round(h * escala);
+  ctx.setTransform(escala, 0, 0, escala, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+
+  for (const traco of avaliacao.questions[current].strokes) {
+    // traço com um ponto só vira uma bolinha
+    if (traco.points.length === 1) {
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(traco.points[0][0] * w, traco.points[0][1] * h, traco.width * w / 700, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    for (let i = 1; i < traco.points.length; i++) {
+      drawSegment(traco.points[i - 1], traco.points[i], traco.width);
+    }
+  }
+}
+
+// Termina o traço atual e avisa que mudou
+function endStroke() {
+  if (!stroke) return;
+  stroke = null;
+  if (state.active && view === 'quiz') changed();
+}
+
+// Liga/desliga o quadro (desligado deixa a tela rolar normalmente)
+function toggleBoard() {
+  if (view !== 'quiz' || finishing) return;
+  endStroke();
+  drawing = !drawing;
+  const botao = $('[data-action="toggle-board"]');
+  if (!botao) return;
+  botao.setAttribute('aria-pressed', String(drawing));
+  botao.textContent = drawing ? 'Concluir' : 'Ativar quadro';
+  $('#canvas-wrap').classList.toggle('editing', drawing);
+}
+
+// Apaga o desenho da questão atual
+function clearBoard() {
+  if (view !== 'quiz' || finishing) return;
+  endStroke();
+  const q = state.active.questions[current];
+  if (!q.strokes.length) return;
+  q.strokes = [];
+  changed();
+  redraw();
+}
+
