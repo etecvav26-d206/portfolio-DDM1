@@ -498,3 +498,223 @@ async function checkHealth() {
   }
 }
 
+// ============================================================
+// 7. AVALIAÇÃO (as 10 questões)
+// ============================================================
+
+// A avaliação que está na tela: a em andamento ou a em revisão
+function avaliacaoAtual() {
+  return view === 'review' ? review : state.active;
+}
+
+// Começa uma avaliação nova (pede 10 questões ao servidor)
+async function startQuiz() {
+  if (busy) return;
+  if (state.active) { setView('quiz'); return; }   // já tem uma em andamento
+
+  busy = true;
+  const botao = $('[data-action="start"]');
+  if (botao) {
+    botao.disabled = true;
+    botao.innerHTML = '<span class="loading"></span> Sorteando…';
+  }
+
+  try {
+    const base = state.config.api;
+    // "exclude" = questões da tentativa desistida, para não repetir
+    const dados = await api('start', { exclude: state.avoid || [] }, base);
+
+    // confere se vieram 10 questões diferentes
+    const idsDiferentes = new Set(dados.questions.map((q) => q.id));
+    if (dados.questions.length !== 10 || idsDiferentes.size !== 10) {
+      throw new Error('Sorteio inválido recebido do servidor.');
+    }
+
+    state.active = { ...dados, api: base, localStarted: Date.now(), revision: 0, syncedRevision: 0, index: 0 };
+    state.avoid = [];
+    current = 0;
+    online = true;
+    persist();
+    setView('quiz');
+  } catch (erro) {
+    toast(erro.message);
+    online = false;
+    if (view === 'estudo') renderEstudo();
+  } finally {
+    busy = false;
+  }
+}
+
+// Desistir: guarda os ids para o próximo sorteio trazer outras questões
+function giveUp() {
+  if (view !== 'quiz' || !state.active || finishing) return;
+  endStroke();
+  clearTimeout(syncTimer);
+  state.avoid = state.active.questions.map((q) => q.id);
+  state.active = null;
+  persist();
+  setView('estudo');
+}
+
+// Desenha a tela de uma questão (serve para a prova e para a revisão)
+function renderQuiz() {
+  const avaliacao = avaliacaoAtual();
+  if (!avaliacao) { setView('estudo'); return; }
+
+  // na prova, a questão aberta fica salva em "index"
+  if (view === 'quiz') current = avaliacao.index || 0;
+  current = Math.min(9, Math.max(0, current));
+
+  const q = avaliacao.questions[current];
+  const revisando = view === 'review';
+
+  // botões do topo
+  const topo = revisando
+    ? '<button class="btn small" data-action="result">Sair da revisão</button>'
+    : '<button class="btn small" data-action="estudo">Sair</button><button class="btn small pen" data-action="giveup">Desistir</button>';
+
+  // bolinhas numeradas (1 a 10)
+  const mapa = avaliacao.questions.map((item, i) => {
+    let classe = i === current ? 'current ' : '';
+    if (revisando) classe += item.isCorrect ? 'correct' : 'wrong';
+    else if (item.selected !== null) classe += 'answered';
+    const atual = i === current ? 'aria-current="step"' : '';
+    return `<button class="${classe}" data-action="jump" data-index="${i}" aria-label="Questão ${i + 1}" ${atual}>${i + 1}</button>`;
+  }).join('');
+
+  // qual fala do Baldi aparece
+  let tipoFala;
+  if (revisando) tipoFala = q.isCorrect ? 'certa' : 'errada';
+  else tipoFala = q.selected === null ? 'espera' : 'marcou';
+  const numeroFala = current * 7 + (q.selected ?? 0) * 3 + 1;
+
+  // alternativas A, B, C, D
+  const letras = 'ABCD';
+  const alternativas = q.options.map((texto, i) => {
+    let classe = q.selected === i ? ' selected' : '';
+    let legenda = '';
+    if (revisando && i === q.correct) { classe = ' correct'; legenda = 'certa'; }
+    else if (revisando && q.selected === i) { classe = ' wrong'; legenda = 'sua resposta'; }
+    return `<button class="option${classe}" data-action="answer" data-index="${i}" aria-pressed="${q.selected === i}" ${revisando ? 'disabled' : ''}>
+      <span class="letter">${letras[i]}</span><span>${esc(texto)}</span><span>${legenda}</span></button>`;
+  }).join('');
+
+  // botão da direita: Próxima / Finalizar / Resultado
+  let acaoFim = 'next', textoFim = 'Próxima';
+  if (current === 9) {
+    acaoFim = revisando ? 'result' : 'finish';
+    textoFim = revisando ? 'Resultado' : 'Finalizar';
+  }
+
+  main.innerHTML = `
+    <div class="qhead">${topo}</div>
+    <nav class="qmap" aria-label="Questões">${mapa}</nav>
+    ${baldiRow(tipoFala, numeroFala)}
+    <div class="progress"><span>Questão ${current + 1} de 10</span></div>
+
+    <article class="qcard">
+      <h1 id="qt">${esc(q.prompt)}</h1>
+      <div class="options" role="group" aria-labelledby="qt">${alternativas}</div>
+      ${revisando ? `<div class="explain"><strong>Resolução</strong>${esc(q.explanation)}</div>` : ''}
+    </article>
+
+    <section class="board-box">
+      <div class="board-top">
+        <h2>Quadro de contas</h2>
+        ${revisando ? '' : '<button class="btn small" data-action="toggle-board" aria-pressed="false">Ativar quadro</button>'}
+      </div>
+      <div class="board-tools">
+        <label>Pincel <input type="range" id="brush" min="1" max="12" value="${brushWidth}" ${revisando ? 'disabled' : ''}><output id="brush-value">${brushWidth}</output></label>
+        <button class="btn small" data-action="clear-board" ${revisando ? 'disabled' : ''}>Limpar</button>
+      </div>
+      <div class="canvas-wrap" id="canvas-wrap">
+        <canvas id="board" aria-label="Quadro da questão ${current + 1}"></canvas>
+        <div class="canvas-note hidden" id="canvas-note"></div>
+      </div>
+    </section>
+
+    <div class="qnav">
+      <button class="btn" data-action="previous" ${current === 0 ? 'disabled' : ''}>Anterior</button>
+      <button class="btn primary" data-action="${acaoFim}">${textoFim}</button>
+    </div>
+    ${revisando ? '<button class="btn block exit" data-action="result">Sair da revisão</button>' : ''}`;
+
+  initCanvas();
+}
+
+// ============================================================
+// 8. ENVIAR RESPOSTAS AO SERVIDOR (sincronizar)
+// ============================================================
+
+// Chamada sempre que algo muda (resposta ou desenho)
+function changed() {
+  const a = state.active;
+  if (!a) return;
+  a.revision++;          // marca que há algo novo para enviar
+  persist();
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(sync, 900);   // espera 0,9 s e envia
+}
+
+// Monta o que será enviado ao servidor
+function saveBody(a) {
+  return {
+    token: a.token,
+    elapsed: elapsed(a),
+    answers: a.questions.map((q) => ({ id: q.id, selected: q.selected, strokes: q.strokes }))
+  };
+}
+
+// Envia as respostas ao servidor (ação "save")
+async function sync() {
+  clearTimeout(syncTimer);
+  const a = state.active;
+  if (!a || syncBusy || finishing || a.revision === a.syncedRevision) return;
+
+  syncBusy = true;
+  const revisao = a.revision;
+  try {
+    await api('save', saveBody(a), a.api);
+    online = true;
+    if (state.active && state.active.token === a.token) {
+      a.syncedRevision = revisao;
+      persist();
+      // se mudou de novo enquanto enviava, envia outra vez
+      if (a.revision !== revisao) syncTimer = setTimeout(sync, 300);
+    }
+  } catch (erro) {
+    // sem internet: as respostas continuam salvas no aparelho, tenta de novo em 15 s
+    online = false;
+    syncTimer = setTimeout(sync, 15000);
+  } finally {
+    syncBusy = false;
+  }
+}
+
+// O aluno clicou em uma alternativa
+function chooseAnswer(i) {
+  if (view !== 'quiz' || finishing) return;
+  endStroke();
+  const q = state.active.questions[current];
+  if (q.selected === i) return;
+  q.selected = i;
+  changed();
+  drawing = false;
+  renderQuiz();
+}
+
+// Vai para a questão número i
+function navigate(i) {
+  if (finishing || i < 0 || i > 9) return;
+  endStroke();
+  drawing = false;
+  current = i;
+  if (view === 'quiz') {
+    state.active.index = i;
+    persist();
+    sync();
+  }
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
