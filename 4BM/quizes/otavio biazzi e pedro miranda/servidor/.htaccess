@@ -1,0 +1,10 @@
+# .HTACCESS - regras do Apache para esta pasta
+
+# Não mostra a lista de arquivos se alguém abrir a pasta no navegador
+Options -Indexes
+
+# Bloqueia o acesso direto a arquivos que não devem ser baixados
+# (senha do banco, arquivos .sql, etc.)
+<FilesMatch "^(config\.php|.*\.sql|.*\.md|.*\.ps1|.*\.py)$">
+    Require all denied
+</FilesMatch>
