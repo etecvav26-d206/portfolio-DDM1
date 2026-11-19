@@ -11,6 +11,15 @@
 
   Tudo é respondido em JSON.
   O banco de dados é criado com os arquivos da pasta sql/.
+
+  DECLARAÇÃO DE USO DE INTELIGÊNCIA ARTIFICIAL
+
+  Ferramenta: Claude (Anthropic)
+  Etapa: Desenvolvimento
+  Finalidade: A base (conexão com o banco, respostas em JSON e as consultas de
+  inserir, atualizar e listar) veio do material AgendaServer / agenda.aia
+  fornecido pelo professor. A IA ajudou a adaptar esse código para o quiz.
+  Validação: A dupla entendeu o código e testou a API no XAMPP com o banco quiz_media.
 */
 
 declare(strict_types=1);
