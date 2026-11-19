@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <!-- Faz a página se ajustar à tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1f9d2a">
+  <title>Médias · Matemática</title>
+
+  <!-- Estilos (cada arquivo cuida de uma parte do visual) -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/estudo.css">
+  <link rel="stylesheet" href="css/quiz.css">
+
+  <!-- Lógica do app (defer = só roda depois da página carregar) -->
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- Faixa verde do topo -->
+  <header class="topbar">
+    <button class="brand" data-action="estudo" aria-label="Início">
+      <span class="brand-text">Médias</span>
+    </button>
+  </header>
+
+  <!-- As telas são desenhadas aqui pelo app.js -->
+  <main id="main" tabindex="-1"></main>
+
+  <!-- Menu de baixo (o app.js cria os botões) -->
+  <nav id="tabs" class="tabs" aria-label="Menu principal"></nav>
+
+  <!-- Aviso rápido (mensagens de erro e dicas) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

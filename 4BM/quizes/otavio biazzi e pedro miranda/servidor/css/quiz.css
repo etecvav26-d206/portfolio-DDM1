@@ -1,0 +1,432 @@
+/* ==========================================================
+   QUIZ.CSS - avaliação, quadro de contas, resultado, histórico e info
+   ========================================================== */
+
+/* Topo da questão (botões Sair / Desistir) */
+.qhead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Bolinhas numeradas de 1 a 10 (azul = respondida, verde/vermelha = revisão) */
+.qmap {
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.qmap button {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  background: var(--card);
+}
+
+.qmap .answered {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.qmap .current {
+  border: 2px solid var(--ink);
+  font-weight: 700;
+}
+
+.qmap .correct {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.qmap .wrong {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--soft);
+  margin-bottom: 8px;
+}
+
+/* Cartão com o enunciado da questão */
+.qcard {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.qmeta {
+  font-size: 13px;
+  color: var(--soft);
+  margin-bottom: 6px;
+}
+
+.qcard h1 {
+  font: 700 20px/1.35 var(--sans);
+  letter-spacing: 0;
+}
+
+/* Alternativas A, B, C, D */
+.options {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid var(--line);
+  padding: 10px;
+  min-height: 50px;
+}
+
+.option>span:last-child {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.letter {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50% !important;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.option.selected, .option.correct {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.option.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.selected .letter, .correct .letter {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.wrong .letter {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+
+.explain strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Botões Anterior / Próxima */
+.qnav {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.qnav .btn {
+  flex: 1;
+}
+
+.quit-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.sync {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--soft);
+}
+
+.sync.pending {
+  color: var(--bad);
+}
+
+
+/* Quadro de rascunho para fazer contas */
+.board-box {
+  margin-top: 20px;
+}
+
+.board-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.board-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.board-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.board-tools input[type=range] {
+  width: 60px;
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.board-tools .btn {
+  flex: none;
+  padding: 5px 10px;
+}
+
+/* Área de desenho */
+.canvas-wrap {
+  position: relative;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+  background: #fff;
+  touch-action: pan-y;
+}
+
+.canvas-wrap.editing {
+  touch-action: none;
+  border: 2px solid var(--accent);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 240px;
+  background: #fff;
+}
+
+.canvas-note {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.canvas-status {
+  display: block;
+  padding: 4px 8px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 12px;
+  color: var(--soft);
+}
+
+
+/* Resultado: nota grande e porcentagem */
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.score strong {
+  font-size: 84px;
+  line-height: 1;
+}
+
+.score span {
+  font-size: 22px;
+  color: var(--soft);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.metrics div {
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+
+.metrics div:last-child {
+  border: 0;
+}
+
+.metrics b {
+  display: block;
+  font-size: 20px;
+}
+
+.metrics small {
+  color: var(--soft);
+  font-size: 12px;
+}
+
+/* Botões do resultado e lista de questões */
+.actions {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.section-title {
+  margin: 22px 0 10px;
+  font-size: 18px;
+}
+
+/* Linha clicável (questão no resultado, item do histórico) */
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.row.bad .badge {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+.row p {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.row small {
+  display: block;
+  margin-top: 2px;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+/* Aviso de lista vazia (histórico sem provas) */
+.empty {
+  padding: 18px;
+  border: 1px dashed var(--line);
+  text-align: center;
+  color: var(--soft);
+}
+
+
+/* Tela Info: campo do endereço da API */
+.field {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 16px 0 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 15px;
+}
+
+.help {
+  font-size: 14px;
+  color: var(--soft);
+  margin: 8px 0 12px;
+}
+
+.result-msg {
+  margin-top: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.result-msg.good {
+  background: var(--accent-bg);
+}
+
+.result-msg.bad {
+  background: var(--bad-bg);
+}
+
+/* Tabela com a dupla e o assunto */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.table th, .table td {
+  border: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  width: 90px;
+  vertical-align: top;
+  background: var(--bg);
+}
+
+.table td {
+  background: #fff;
+}
+
+/* Telas grandes (computador): fontes e imagens maiores */
+@media(min-width:700px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+  .baldi-hero {
+    height: 260px;
+  }
+  canvas {
+    height: 300px;
+  }
+}
