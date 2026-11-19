@@ -418,3 +418,15 @@ canvas {
   background: #fff;
 }
 
+/* Telas grandes (computador): fontes e imagens maiores */
+@media(min-width:700px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+  .baldi-hero {
+    height: 260px;
+  }
+  canvas {
+    height: 300px;
+  }
+}

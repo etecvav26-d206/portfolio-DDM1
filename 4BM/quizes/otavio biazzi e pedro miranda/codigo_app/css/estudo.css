@@ -180,3 +180,65 @@ mark {
   padding-left: 20px;
 }
 
+/* Exercício com resposta escondida (clique para abrir) */
+details {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+}
+
+summary {
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  float: right;
+}
+
+details[open] summary::after {
+  content: "−";
+}
+
+details .ans {
+  padding: 0 12px 10px;
+}
+
+/* Resumo no fim da página */
+.cheat {
+  margin-top: 18px;
+  padding: 16px;
+  background: var(--accent-bg);
+}
+
+.cheat ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.cheat li {
+  margin: 4px 0;
+}
+
+/* Chamada final: botão para fazer a avaliação */
+.cta {
+  padding: 18px;
+  border: 2px solid var(--ruler);
+  background: #fffbe0;
+}
+
+.cta p {
+  margin: 6px 0 14px;
+  color: var(--soft);
+}
+
+.note {
+  padding: 14px;
+  font-size: 14px;
+}

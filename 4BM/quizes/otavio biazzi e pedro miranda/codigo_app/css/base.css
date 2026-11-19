@@ -146,3 +146,86 @@ main {
   background: var(--accent-bg);
 }
 
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-weight: 600;
+}
+
+/* verde */
+.btn.primary {
+  background: var(--accent);
+  border-color: #17781f;
+  color: #fff;
+}
+
+/* vermelho (Desistir) */
+.btn.pen {
+  background: var(--bad);
+  border-color: var(--bad);
+  color: #fff;
+}
+
+/* menor */
+.btn.small {
+  min-height: 36px;
+  padding: 5px 12px;
+  font-size: 14px;
+}
+
+/* largura total */
+.btn.block {
+  width: 100%;
+}
+
+.btn.exit {
+  margin-top: 14px;
+}
+
+/* ---------- Aviso rápido (aparece por 4 segundos) ---------- */
+.toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 84px;
+  z-index: 30;
+  max-width: 520px;
+  margin: auto;
+  padding: 11px 14px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: .2s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Bolinha girando (carregando) ---------- */
+.loading {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  border: 3px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50% !important;
+  animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
