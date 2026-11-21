@@ -6,6 +6,8 @@
 
 **Fluxo:** Material de estudo → Fazer avaliação (10 questões sorteadas de 30, sem repetir) → se desistir, o próximo sorteio traz outras questões.
 
+**Relatório com prints do app:** [relatorio.md](relatorio.md)
+
 ## Pastas e arquivos
 
 ```text
