@@ -1,7 +1,4 @@
 <?php
-// Configuração da conexão com o banco de dados.
-// No XAMPP o padrão é usuário "root" e senha vazia.
-// Em uma hospedagem, troque pelos dados que ela informar.
 $host  = 'localhost';
 $banco = 'quiz_fisica';
 $user  = 'root';
