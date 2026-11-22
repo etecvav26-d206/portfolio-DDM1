@@ -44,3 +44,5 @@ INSERT INTO perguntas (pergunta, alt_a, alt_b, alt_c, alt_d, resposta) VALUES
   ('Ao empurrar uma parede, você sente que ela empurra de volta porque:', 'A parede não exerce força', 'A força da parede é menor', 'A força da parede é maior', 'A parede exerce força igual e contrária', 'D'),
   ('1 N é a força que dá a um corpo de 1 kg a aceleração de:', '10 m/s²', '1 m/s²', '9,8 m/s²', '0,1 m/s²', 'B'),
   ('Um corpo de 10 kg recebe uma força de 50 N e sofre atrito de 20 N. Qual a aceleração?', '5 m/s²', '7 m/s²', '3 m/s²', '2 m/s²', 'C');
+
+
