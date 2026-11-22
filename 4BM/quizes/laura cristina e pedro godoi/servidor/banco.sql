@@ -1,5 +1,5 @@
 -- Banco de dados do Quiz de Física: Leis de Newton
--- Importe este arquivo no phpMyAdmin (aba "Importar").
+
 
 CREATE DATABASE IF NOT EXISTS quiz_fisica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE quiz_fisica;
